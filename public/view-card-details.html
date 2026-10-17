@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Debit Card & Details - Infinity Bank</title>
+    <link rel="stylesheet" href="styles_bank.css">
+</head>
+<body>
+
+    <!-- TOP BANK HEADER -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="code4.html" class="bank-brand">
+                <img src="logo.jpg" alt="Infinity Bank Logo">
+                <div class="bank-brand-text">
+                    <span class="bank-name">INFINITY BANK</span>
+                    <span class="bank-tagline">Retail & Corporate NetBanking</span>
+                </div>
+            </a>
+
+            <div class="bank-user-pill">
+                <div class="bank-user-avatar" id="navAvatar">U</div>
+                <div class="bank-user-info">
+                    <span class="user-greeting">Authenticated Customer</span>
+                    <span class="user-acc" id="navAccNumber">A/C: Loading...</span>
+                </div>
+                <div class="bank-balance-badge">
+                    <span class="lbl">Available Balance</span>
+                    <span class="val" id="navLiveBalance">₹ --</span>
+                </div>
+                <button class="bank-btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="bank-shell">
+        <!-- BREADCRUMBS -->
+        <nav class="bank-breadcrumbs">
+            <a href="code4.html">Dashboard</a>
+            <span class="sep">/</span>
+            <a href="code4.html">Card Services</a>
+            <span class="sep">/</span>
+            <span class="curr">Debit Card Details & Controls</span>
+        </nav>
+
+        <!-- HERO STRIP -->
+        <section class="bank-hero-strip">
+            <div class="hero-left">
+                <div class="hero-icon-box">💳</div>
+                <div>
+                    <h1 class="hero-title">Debit Card Management</h1>
+                    <p class="hero-desc">Securely inspect card credentials, configure domestic/international limits, and control card privileges.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="lbl">Linked Account Status</span>
+                <span class="val" style="font-size: 1.1rem; color: #15803d;">● Active & Verified</span>
+                <span class="sub" id="heroAccNumber">A/C: Loading...</span>
+            </div>
+        </section>
+
+        <!-- 2-COLUMN INSTITUTIONAL LAYOUT -->
+        <div class="bank-grid-layout">
+            <!-- MAIN COLUMN -->
+            <div class="bank-main-col">
+
+                <!-- REALISTIC VIRTUAL DEBIT CARD DISPLAY -->
+                <div class="bank-card">
+                    <div class="bank-card-header">
+                        <div>
+                            <h2 class="bank-card-title">Virtual Debit Card</h2>
+                            <p class="bank-card-subtitle">EMV Chip & Contactless RuPay Platinum Debit Card</p>
+                        </div>
+                        <span class="bank-badge-secure">256-Bit SSL Secured</span>
+                    </div>
+
+                    <div class="virtual-card-wrapper">
+                        <div class="virtual-debit-card" id="virtualCardElement">
+                            <div class="vc-top-row">
+                                <div class="vc-brand">
+                                    <span>INFINITY</span>
+                                </div>
+                                <div class="vc-type-badge">PLATINUM DEBIT</div>
+                            </div>
+
+                            <div class="vc-chip-row">
+                                <div class="vc-emv-chip"></div>
+                                <div class="vc-contactless">📶</div>
+                            </div>
+
+                            <div class="vc-number" id="card-number">•••• •••• •••• ••••</div>
+
+                            <div class="vc-bottom-row">
+                                <div>
+                                    <div class="vc-detail-label">Card Holder</div>
+                                    <div class="vc-detail-val" id="card-holder">AUTHENTICATED CUSTOMER</div>
+                                </div>
+                                <div>
+                                    <div class="vc-detail-label">Valid Thru</div>
+                                    <div class="vc-detail-val" id="card-expiry">••/••</div>
+                                </div>
+                                <div class="vc-network-badge">
+                                    RuPay
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECURITY VERIFICATION BOX -->
+                    <div id="password-entry" class="bank-alert-box" style="margin-top: 10px;">
+                        <div class="alert-icon">🔒</div>
+                        <div class="alert-text" style="width: 100%;">
+                            <h4 style="color: var(--c-darkred); font-size: 0.95rem; margin-bottom: 4px;">Mandatory Security Verification</h4>
+                            <p style="margin-bottom: 14px; font-size: 0.85rem; color: var(--text-secondary);">
+                                In accordance with Reserve Bank of India (RBI) cyber-security regulations, please authenticate your password to decrypt your primary account number (PAN) and expiry date.
+                            </p>
+                            <div class="bank-form-group" style="margin-bottom: 12px;">
+                                <label class="bank-label" for="password">Account Password</label>
+                                <div class="bank-input-wrap">
+                                    <input type="password" class="bank-input" id="password" placeholder="Enter your NetBanking login password" required />
+                                    <button type="button" class="bank-btn-primary" style="white-space: nowrap;" onclick="checkPassword()">
+                                        Authenticate & Reveal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- REVEALED STATUS FEEDBACK -->
+                    <div id="card-details" style="display: none; margin-top: 16px;">
+                        <div class="bank-alert-box" style="border-color: #22c55e; background-color: #f0fdf4;">
+                            <div class="alert-icon" style="color: #15803d;">✓</div>
+                            <div class="alert-text">
+                                <h4 style="color: #15803d; font-size: 0.92rem;">Card Credentials Successfully Decrypted</h4>
+                                <p style="font-size: 0.82rem; color: #166534;">Your full card details are securely displayed above. For safety, this view automatically expires when your session closes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD USAGE CONTROLS -->
+                <div class="bank-card" style="margin-top: 24px;">
+                    <div class="bank-card-header">
+                        <div>
+                            <h2 class="bank-card-title">Card Transaction Preferences</h2>
+                            <p class="bank-card-subtitle">Manage domestic, international, and channel controls dynamically in real-time.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-control-item">
+                        <div class="card-control-info">
+                            <h4>Online / E-Commerce Transactions</h4>
+                            <p>Enable online shopping, bill payments, and merchant checkout via OTP.</p>
+                        </div>
+                        <label class="bank-switch">
+                            <input type="checkbox" id="chkEcom" checked onchange="toggleFeature('Online / E-Commerce', this.checked)">
+                            <span class="bank-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="card-control-item">
+                        <div class="card-control-info">
+                            <h4>ATM Cash Withdrawals</h4>
+                            <p>Enable cash withdrawals from Infinity Bank and NFS network ATMs nationwide.</p>
+                        </div>
+                        <label class="bank-switch">
+                            <input type="checkbox" id="chkATM" checked onchange="toggleFeature('ATM Withdrawals', this.checked)">
+                            <span class="bank-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="card-control-item">
+                        <div class="card-control-info">
+                            <h4>Contactless (Tap & Pay)</h4>
+                            <p>Enable contactless transactions up to ₹5,000 without requiring PIN verification.</p>
+                        </div>
+                        <label class="bank-switch">
+                            <input type="checkbox" id="chkTap" checked onchange="toggleFeature('Contactless Payments', this.checked)">
+                            <span class="bank-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="card-control-item">
+                        <div class="card-control-info">
+                            <h4>International Usage</h4>
+                            <p>Enable cross-border ATM and POS transactions. Keep disabled for domestic security.</p>
+                        </div>
+                        <label class="bank-switch">
+                            <input type="checkbox" id="chkIntl" onchange="toggleFeature('International Usage', this.checked)">
+                            <span class="bank-slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- DAILY LIMITS PROGRESS -->
+                    <div style="margin-top: 20px; padding: 16px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">Daily ATM Cash Limit</span>
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--c-darkred);">₹50,000 / day</span>
+                        </div>
+                        <div style="height: 6px; background: var(--border-subtle); border-radius: 3px; overflow: hidden; margin-bottom: 14px;">
+                            <div style="width: 25%; height: 100%; background: var(--c-darkred);"></div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">Daily POS & Online Limit</span>
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--c-darkred);">₹1,00,000 / day</span>
+                        </div>
+                        <div style="height: 6px; background: var(--border-subtle); border-radius: 3px; overflow: hidden;">
+                            <div style="width: 40%; height: 100%; background: var(--c-red);"></div>
+                        </div>
+                    </div>
+
+                    <!-- QUICK ACTIONS -->
+                    <div class="bank-card-actions-grid">
+                        <a href="javascript:void(0)" onclick="quickAction('Temporary Freeze')" class="card-action-btn">
+                            <span>❄️</span>
+                            <span>Temporary Freeze</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="quickAction('Reset ATM PIN')" class="card-action-btn">
+                            <span>🔑</span>
+                            <span>Change ATM PIN</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="quickAction('Set Transaction Limits')" class="card-action-btn">
+                            <span>⚙️</span>
+                            <span>Adjust Limits</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="quickAction('Report Lost / Damaged')" class="card-action-btn">
+                            <span>🚨</span>
+                            <span>Report Lost Card</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- NAVIGATION BUTTONS -->
+                <div style="margin-top: 20px; display: flex; gap: 12px;">
+                    <a href="code4.html" class="bank-btn-secondary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                        ← Back to Dashboard
+                    </a>
+                </div>
+            </div>
+
+            <!-- SIDEBAR COLUMN -->
+            <div class="bank-sidebar-col">
+                <!-- CARD SNAPSHOT CARD -->
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Card Summary</h3>
+                    <div class="sidebar-info-row">
+                        <span class="label">Card Tier</span>
+                        <span class="value">RuPay Platinum</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">Card Status</span>
+                        <span class="value" style="color: #15803d;">● Active</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">Linked Account</span>
+                        <span class="value" id="sideAccNumber">Loading...</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">Issued Date</span>
+                        <span class="value">Jan 2024</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">Reward Points</span>
+                        <span class="value" style="color: var(--c-darkred);">1,450 Pts</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">Lounge Access</span>
+                        <span class="value">2 Free / Quarter</span>
+                    </div>
+                </div>
+
+                <!-- SECURITY ASSURANCE -->
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Security & Safety</h3>
+                    <ul class="sidebar-checklist">
+                        <li>
+                            <span class="chk">✓</span>
+                            <span><strong>Zero Liability Protection:</strong> Covered up to ₹2,00,000 against unauthorized card transactions.</span>
+                        </li>
+                        <li>
+                            <span class="chk">✓</span>
+                            <span><strong>Never Disclose CVV or PIN:</strong> Infinity Bank personnel will never call asking for PIN, OTP, or CVV.</span>
+                        </li>
+                        <li>
+                            <span class="chk">✓</span>
+                            <span><strong>Instant Block Service:</strong> Send SMS <code>BLOCK [Card No]</code> to 56161 to freeze instantly.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- EMERGENCY HELPLINE -->
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">24x7 Cards Helpline</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px;">
+                        For lost or stolen cards, emergency international assistance, or disputing transactions:
+                    </p>
+                    <div style="font-weight: 700; color: var(--c-darkred); font-size: 1.1rem; margin-bottom: 4px;">
+                        📞 1800-888-9999
+                    </div>
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">Toll-Free Nationwide • Open 24 Hours</span>
+                </div>
+
+                <!-- RELATED SERVICES -->
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Card Services</h3>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="transactions.html" style="font-size: 0.85rem; color: var(--c-darkred); text-decoration: none; font-weight: 600;">→ Recent Card Transactions</a>
+                        <a href="bill-Pay.html" style="font-size: 0.85rem; color: var(--c-darkred); text-decoration: none; font-weight: 600;">→ Pay Credit Card Bill</a>
+                        <a href="check-balance.html" style="font-size: 0.85rem; color: var(--c-darkred); text-decoration: none; font-weight: 600;">→ View Available Balance</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="bank-bottom-footer">
+            <div>
+                &copy; 2025 Infinity Bank Ltd. All Rights Reserved. Regulated by Reserve Bank of India (RBI).
+            </div>
+            <div>
+                Server Time: <strong id="server-time">--:--:--</strong> | 
+                <a href="privacy-policy.html">Privacy Policy</a> | 
+                <a href="terms-conditions.html">Terms & Conditions</a>
+            </div>
+        </footer>
+    </main>
+
+    <script type="module">
+        const accountNumber = localStorage.getItem("accountNumber");
+
+        if (!accountNumber) {
+            alert("No active session found. Please log in.");
+            window.location.href = "login.html";
+        }
+
+        // Initialize user display & balance
+        async function initPage() {
+            if (!accountNumber) return;
+            const maskedAcc = accountNumber.length > 4 ? "•••• " + accountNumber.slice(-4) : accountNumber;
+            document.getElementById("navAccNumber").textContent = `A/C: ${maskedAcc}`;
+            document.getElementById("heroAccNumber").textContent = `A/C: ${accountNumber}`;
+            document.getElementById("sideAccNumber").textContent = accountNumber;
+
+            try {
+                const { default: supabase } = await import('./js/supabaseClient.js');
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('name, balance, card_number')
+                    .eq('account_number', accountNumber)
+                    .single();
+
+                if (data && !error) {
+                    if (data.name) {
+                        document.getElementById("navAvatar").textContent = data.name.charAt(0).toUpperCase();
+                        document.getElementById("card-holder").textContent = data.name.toUpperCase();
+                    }
+                    if (data.balance !== undefined) {
+                        document.getElementById("navLiveBalance").textContent = "₹" + Number(data.balance).toLocaleString("en-IN");
+                    }
+                    if (data.card_number) {
+                        const clean = data.card_number.replace(/\s+/g, '');
+                        if (clean.length >= 4) {
+                            document.getElementById("card-number").textContent = `•••• •••• •••• ${clean.slice(-4)}`;
+                        }
+                    }
+                } else {
+                    const cachedName = localStorage.getItem("name");
+                    const cachedBalance = localStorage.getItem("balance");
+                    if (cachedName) {
+                        document.getElementById("navAvatar").textContent = cachedName.charAt(0).toUpperCase();
+                        document.getElementById("card-holder").textContent = cachedName.toUpperCase();
+                    }
+                    if (cachedBalance !== null) {
+                        document.getElementById("navLiveBalance").textContent = "₹" + Number(cachedBalance).toLocaleString("en-IN");
+                    }
+                }
+            } catch (err) {
+                console.error("Error fetching user details via Supabase:", err);
+            }
+        }
+
+        async function checkPassword() {
+            const passwordInput = document.getElementById("password");
+            const password = passwordInput.value;
+
+            if (!password || !accountNumber) {
+                alert("Please enter your account password to verify identity.");
+                return;
+            }
+
+            try {
+                const { default: supabase } = await import('./js/supabaseClient.js');
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('password, name, card_number')
+                    .eq('account_number', accountNumber)
+                    .single();
+
+                if (error || !data) {
+                    alert("Account not found.");
+                    return;
+                }
+
+                if (data.password === password) {
+                    document.getElementById("password-entry").style.display = "none";
+                    document.getElementById("card-details").style.display = "block";
+
+                    // Format 16 digit card number
+                    const formattedNumber = (data.card_number || "4532 8821 9901 4412").trim();
+                    document.getElementById("card-number").textContent = formattedNumber;
+                    document.getElementById("card-holder").textContent = (data.name || "AUTHENTICATED CUSTOMER").toUpperCase();
+                    document.getElementById("card-expiry").textContent = "12/28";
+
+                    // Add gold glow animation to card
+                    const card = document.getElementById("virtualCardElement");
+                    card.style.boxShadow = "0 12px 36px rgba(245, 166, 35, 0.45)";
+                } else {
+                    alert("Invalid credentials! Please try again.");
+                }
+            } catch (error) {
+                alert("Error connecting to database. Please try again.");
+                console.error(error);
+            }
+        }
+
+        window.checkPassword = checkPassword;
+        window.toggleFeature = function(featureName, isEnabled) {
+            const status = isEnabled ? "ENABLED" : "DISABLED";
+            alert(`Card Control: ${featureName} has been ${status} successfully for your card.`);
+        };
+
+        window.quickAction = function(actionName) {
+            if (actionName === 'Temporary Freeze') {
+                if (confirm("Are you sure you want to temporarily freeze your debit card? You can unfreeze it at any time from this portal.")) {
+                    alert("Your card has been temporarily frozen. All ATM, POS, and online transactions are blocked until you unfreeze.");
+                }
+            } else if (actionName === 'Reset ATM PIN') {
+                const newPin = prompt("Enter new 4-digit ATM PIN:");
+                if (newPin && newPin.length === 4 && !isNaN(newPin)) {
+                    alert("OTP sent to your registered mobile number for ATM PIN confirmation.");
+                } else if (newPin) {
+                    alert("Invalid PIN. Please enter a valid 4-digit numeric PIN.");
+                }
+            } else {
+                alert(`${actionName} request registered. Our secure portal will guide you through confirmation.`);
+            }
+        };
+
+        window.logout = function() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        };
+
+        initPage();
+        updateServerTime();
+        setInterval(updateServerTime, 1000);
+    </script>
+</body>
+</html>

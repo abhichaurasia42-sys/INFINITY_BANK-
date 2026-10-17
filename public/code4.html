@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Bank - Dashboard</title>
+    <link rel="stylesheet" href="styles_4.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-brand">
+                <img src="logo.jpg" alt="Infinity Bank Logo" class="logo">
+                <div class="header-brand-text">
+                    <h1>Infinity Bank</h1>
+                    <p>For everyone, anytime</p>
+                </div>
+            </div>
+            <div class="top-buttons">
+                <a href="index.html" class="logout-button">
+                    <span>Logout</span> &rarr;
+                </a>
+            </div>
+        </header>
+
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="menu">
+                <a href="nav/navLoan.html">Loans</a>
+                <a href="nav/navaccount.html">Accounts</a>
+                <a href="nav/navinvestment.html">Investments</a>
+                <a href="nav/navotherservice.html">Other Services</a>
+                <a href="nav/navinsurance.html">Insurance</a>
+                <a href="nav/navoffers.html">Offers</a>
+            </div>
+        </nav>
+
+        <!-- Cyclic Carousel Banners (Top of Homepage) -->
+        <section class="carousel-section" aria-label="Featured Banking Offers">
+            <div class="carousel-wrapper" id="bannerCarousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Banner 1: Savings (Navy & Gold) -->
+                    <div class="carousel-slide" style="--slide-accent: var(--c-navy); --slide-bg: linear-gradient(135deg, rgba(30, 45, 74, 0.08) 0%, rgba(245, 166, 35, 0.12) 100%);">
+                        <span class="slide-badge">Zero-Balance Digital Account</span>
+                        <h2 class="slide-title">Crown Smart Digital Savings</h2>
+                        <p class="slide-desc">Experience 7.25% p.a. interest, zero account maintenance charges, and instant zero-fee domestic money transfers round the clock.</p>
+                        <div class="slide-actions">
+                            <a href="nav/navaccount.html" class="slide-btn primary">Explore Accounts</a>
+                            <a href="nav/navoffers.html" class="slide-btn secondary">View Privileges</a>
+                        </div>
+                    </div>
+
+                    <!-- Banner 2: Loans (Gold & Navy) -->
+                    <div class="carousel-slide" style="--slide-accent: var(--c-gold); --slide-bg: linear-gradient(135deg, rgba(245, 166, 35, 0.12) 0%, rgba(30, 45, 74, 0.06) 100%);">
+                        <span class="slide-badge">Instant Pre-Approved Sanction</span>
+                        <h2 class="slide-title">Personal & Home Loans from 8.45%</h2>
+                        <p class="slide-desc">Disbursal in under 10 minutes with 100% paperless documentation and zero processing fees this festive season.</p>
+                        <div class="slide-actions">
+                            <a href="nav/navLoan.html" class="slide-btn primary">Check Eligibility</a>
+                            <a href="nav/navLoan.html" class="slide-btn secondary">Calculate EMI</a>
+                        </div>
+                    </div>
+
+                    <!-- Banner 3: Investments (Navy Mid & Gold) -->
+                    <div class="carousel-slide" style="--slide-accent: var(--c-navy-mid); --slide-bg: linear-gradient(135deg, rgba(42, 63, 107, 0.09) 0%, rgba(245, 166, 35, 0.08) 100%);">
+                        <span class="slide-badge">Guaranteed Wealth Creation</span>
+                        <h2 class="slide-title">High-Yield Fixed Deposits & Mutual SIPs</h2>
+                        <p class="slide-desc">Lock in top interest rates up to 8.20% p.a. with senior citizen bonus, monthly payout options, and complete liquidity.</p>
+                        <div class="slide-actions">
+                            <a href="nav/navinvestment.html" class="slide-btn primary">Start Investing</a>
+                            <a href="nav/navinvestment.html" class="slide-btn secondary">Fixed Deposit Rates</a>
+                        </div>
+                    </div>
+
+                    <!-- Banner 4: Credit Card (Gold & Navy) -->
+                    <div class="carousel-slide" style="--slide-accent: var(--c-gold); --slide-bg: linear-gradient(135deg, rgba(245, 166, 35, 0.14) 0%, rgba(30, 45, 74, 0.08) 100%);">
+                        <span class="slide-badge">Exclusive Travel & Dining</span>
+                        <h2 class="slide-title">Platinum Metal Credit Card</h2>
+                        <p class="slide-desc">Earn unlimited 5% cashback on dining, fuel & travel bookings, plus complimentary domestic & international lounge access.</p>
+                        <div class="slide-actions">
+                            <a href="nav/navoffers.html" class="slide-btn primary">Apply for Card</a>
+                            <a href="view-card-details.html" class="slide-btn secondary">Manage Cards</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <button class="carousel-arrow prev" id="carouselPrev" aria-label="Previous Slide">&#10094;</button>
+                <button class="carousel-arrow next" id="carouselNext" aria-label="Next Slide">&#10095;</button>
+
+                <!-- Dynamic Indicators -->
+                <div class="carousel-indicators" id="carouselIndicators"></div>
+            </div>
+        </section>
+
+        <!-- Welcome & Account Info Bar -->
+        <section class="welcome-card">
+            <div class="welcome-info">
+                <div class="avatar-icon">&#128100;</div>
+                <div class="welcome-text">
+                    <h3>Welcome back, <span id="name">User</span></h3>
+                    <p>Infinity Secure Banking Portal</p>
+                </div>
+            </div>
+
+            <div class="account-info-box">
+                <span class="account-number-pill">
+                    A/C: <span id="account-number">•••• •••• •••• <span id="last4"></span></span>
+                </span>
+                <input type="password" id="password-input" placeholder="Password to reveal" class="password-field">
+                <button class="reveal-btn" onclick="revealFullAccount()">Show Number</button>
+            </div>
+        </section>
+
+        <!-- Features Grid (Element Boxes with Reduced Fillet) -->
+        <div class="section-title">Quick Banking Services</div>
+        <div class="features-grid">
+            <a href="deposit.html" class="feature-box">
+                <div class="feature-icon-wrapper">&#128181;</div>
+                <p class="feature-title">Deposit Money</p>
+            </a>
+            <a href="withdraw.html" class="feature-box">
+                <div class="feature-icon-wrapper">&#128182;</div>
+                <p class="feature-title">Withdraw Money</p>
+            </a>
+            <a href="send-money.html" class="feature-box">
+                <div class="feature-icon-wrapper">&#128184;</div>
+                <p class="feature-title">Send Money</p>
+            </a>
+            <a href="bill-pay.html" class="feature-box">
+                <div class="feature-icon-wrapper">&#128220;</div>
+                <p class="feature-title">Bill Pay</p>
+            </a>
+            <a href="recharge.html" class="feature-box">
+                <div class="feature-icon-wrapper">&#128242;</div>
+                <p class="feature-title">Recharge</p>
+            </a>
+            <a href="transactions.html" class="feature-box">
+                <div class="feature-icon-wrapper">&#128214;</div>
+                <p class="feature-title">Transaction History</p>
+            </a>
+            <a href="view-card-details.html" class="feature-box">
+                <div class="feature-icon-wrapper">&#128179;</div>
+                <p class="feature-title">View Card Details</p>
+            </a>
+            <a href="check-balance.html" class="feature-box">
+                <div class="feature-icon-wrapper">&#129297;</div>
+                <p class="feature-title">Check Balance</p>
+            </a>
+            <a href="profile.html" class="feature-box">
+                <div class="feature-icon-wrapper">&#128104;&#8205;&#128188;</div>
+                <p class="feature-title">My Profile</p>
+            </a>
+        </div>
+
+        <!-- About Us -->
+        <section class="about">
+            <h3>About Infinity Bank</h3>
+            <p>Infinity Bank provides institutional-grade digital banking solutions, competitive retail loans, investment advisory, and advanced 256-bit encryption for seamless and secure financial transactions.</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Infinity Bank &copy; 2025. All rights reserved.</p>
+            <p>Server Time: <span id="server-time"></span></p>
+            <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms & Conditions</a></p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // ==========================================================
+        // CYCLIC MOVING BANNER CAROUSEL
+        // ==========================================================
+        (function initCyclicCarousel() {
+            const track = document.getElementById("carouselTrack");
+            const slides = document.querySelectorAll(".carousel-slide");
+            const prevBtn = document.getElementById("carouselPrev");
+            const nextBtn = document.getElementById("carouselNext");
+            const indicatorsContainer = document.getElementById("carouselIndicators");
+            const carouselWrapper = document.getElementById("bannerCarousel");
+
+            if (!track || slides.length === 0) return;
+
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+            const intervalDuration = 4200; // 4.2 seconds cyclic slide
+            let autoTimer = null;
+
+            // Generate indicators
+            indicatorsContainer.innerHTML = "";
+            slides.forEach((_, idx) => {
+                const dot = document.createElement("button");
+                dot.classList.add("indicator-dot");
+                dot.setAttribute("aria-label", `Slide ${idx + 1}`);
+                if (idx === 0) dot.classList.add("active");
+                dot.addEventListener("click", () => {
+                    goToSlide(idx);
+                    restartTimer();
+                });
+                indicatorsContainer.appendChild(dot);
+            });
+
+            const dots = indicatorsContainer.querySelectorAll(".indicator-dot");
+
+            function updateSlidePosition() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle("active", idx === currentIndex);
+                });
+            }
+
+            function goToSlide(index) {
+                currentIndex = (index + totalSlides) % totalSlides;
+                updateSlidePosition();
+            }
+
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+
+            function startTimer() {
+                if (autoTimer) clearInterval(autoTimer);
+                autoTimer = setInterval(nextSlide, intervalDuration);
+            }
+
+            function stopTimer() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            function restartTimer() {
+                stopTimer();
+                startTimer();
+            }
+
+            // Button controls
+            nextBtn.addEventListener("click", () => {
+                nextSlide();
+                restartTimer();
+            });
+
+            prevBtn.addEventListener("click", () => {
+                prevSlide();
+                restartTimer();
+            });
+
+            // Pause on hover
+            carouselWrapper.addEventListener("mouseenter", stopTimer);
+            carouselWrapper.addEventListener("mouseleave", startTimer);
+
+            // Touch swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carouselWrapper.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopTimer();
+            }, { passive: true });
+
+            carouselWrapper.addEventListener("touchend", (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0) nextSlide();
+                    else prevSlide();
+                }
+                startTimer();
+            }, { passive: true });
+
+            // Keyboard navigation when focused
+            document.addEventListener("keydown", (e) => {
+                if (document.activeElement && carouselWrapper.contains(document.activeElement)) {
+                    if (e.key === "ArrowLeft") { prevSlide(); restartTimer(); }
+                    if (e.key === "ArrowRight") { nextSlide(); restartTimer(); }
+                }
+            });
+
+            // Start auto cyclic motion
+            startTimer();
+        })();
+
+        // ==========================================================
+        // USER DATA & ACCOUNT REVEAL
+        // ==========================================================
+        let name = localStorage.getItem("name");
+        let accountNumber = localStorage.getItem("accountNumber");
+
+        if (!accountNumber) {
+            alert("Error: User not found. Redirecting to login.");
+            window.location.href = "index.html";
+        }
+
+        async function fetchUserDetails() {
+            try {
+                const { default: supabase } = await import('./js/supabaseClient.js');
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('name, account_number, balance, transactions')
+                    .eq('account_number', accountNumber)
+                    .single();
+
+                if (data && !error) {
+                    name = data.name;
+                    accountNumber = data.account_number;
+                    localStorage.setItem("name", name);
+                    localStorage.setItem("accountNumber", accountNumber);
+                    if (data.balance !== undefined) localStorage.setItem("balance", data.balance);
+
+                    document.getElementById("name").textContent = name;
+                    document.getElementById("last4").textContent = formatAccountNumber(accountNumber).slice(-4);
+                }
+            } catch (error) {
+                console.error("Error fetching user details from Supabase:", error);
+            }
+        }
+
+        if (!name || !accountNumber) {
+            fetchUserDetails();
+        } else {
+            document.getElementById("name").textContent = name;
+            document.getElementById("last4").textContent = formatAccountNumber(accountNumber).slice(-4);
+        }
+
+        async function revealFullAccount() {
+            const password = document.getElementById("password-input").value;
+
+            if (!password) {
+                alert("Please enter your password to view the account number.");
+                return;
+            }
+
+            try {
+                const { default: supabase } = await import('./js/supabaseClient.js');
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('password')
+                    .eq('account_number', accountNumber)
+                    .single();
+
+                if (data && data.password === password) {
+                    document.getElementById("account-number").innerHTML = `<strong>${formatAccountNumber(accountNumber)}</strong>`;
+                } else {
+                    alert("Incorrect password!");
+                }
+            } catch (error) {
+                console.error("Error verifying password via Supabase:", error);
+                alert("Connection error. Please try again.");
+            }
+        }
+
+        function formatAccountNumber(num) {
+            return String(num).replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim();
+        }
+
+        function updateServerTime() {
+            const serverTimeElement = document.getElementById("server-time");
+            const currentTime = new Date().toLocaleTimeString();
+            serverTimeElement.textContent = currentTime;
+        }
+
+        updateServerTime();
+        setInterval(updateServerTime, 1000);
+    </script>
+</body>
+</html>

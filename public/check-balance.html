@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Account Balance - Infinity Bank</title>
+    <link rel="stylesheet" href="styles_bank.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Bank App Header -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="code4.html" class="bank-brand">
+                <img src="logo.jpg" alt="Infinity Bank Logo">
+                <div>
+                    <div class="bank-brand-title">Infinity Bank</div>
+                    <div class="bank-brand-sub">Secure Digital Banking Portal</div>
+                </div>
+            </a>
+            <div class="bank-header-right">
+                <div class="user-badge">
+                    <div class="user-badge-icon"><i class="fa-solid fa-user"></i></div>
+                    <span id="userNameDisplay">Account Holder</span>
+                </div>
+                <a href="code4.html" class="btn-nav-dashboard">
+                    <i class="fa-solid fa-arrow-left"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bank-shell">
+        <!-- Hero Breadcrumbs & Live Balance Strip -->
+        <div class="bank-page-hero">
+            <div class="hero-left">
+                <div class="hero-icon" style="color: var(--c-darkred);"><i class="fa-solid fa-wallet"></i></div>
+                <div>
+                    <div class="hero-breadcrumbs">
+                        <a href="code4.html">Dashboard</a> / Account Services / Check Balance
+                    </div>
+                    <h1 class="hero-title">Real-Time Balance Inquiry</h1>
+                    <p class="hero-desc">Verify your identity and query live ledger balance with secure biometric authentication.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="hero-balance-label">Account Status</span>
+                <span class="hero-balance-val" style="font-size: 1.15rem; color: #15803d;"><i class="fa-solid fa-circle-check"></i> Active & Verified</span>
+                <span class="hero-balance-status">Infinity Tier-1 Digital Savings</span>
+            </div>
+        </div>
+
+        <!-- 2-Column Filled Real Bank Grid -->
+        <div class="bank-grid-layout">
+            <!-- Left: Balance Query Workspace -->
+            <div class="bank-main-card">
+                <!-- Step 1: Security Human Verification -->
+                <div id="captcha-verification">
+                    <h2 class="card-heading">
+                        <i class="fa-solid fa-robot" style="color: var(--c-darkred);"></i>
+                        Security Human Verification
+                    </h2>
+                    <p class="card-subheading">In compliance with banking security standards, please confirm your interactive session before viewing financial balances.</p>
+
+                    <div style="background: var(--bg-subtle); border: 1px solid var(--border-subtle); padding: 18px 20px; border-radius: var(--fillet); margin-bottom: 22px; display: flex; align-items: center; gap: 12px;">
+                        <input type="checkbox" id="robot-checkbox" style="width: 20px; height: 20px; accent-color: var(--c-red); cursor: pointer;">
+                        <label for="robot-checkbox" style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); cursor: pointer;">
+                            I confirm I am an authorized user and not an automated robot
+                        </label>
+                    </div>
+
+                    <button type="button" class="bank-btn-primary" onclick="verifyCaptcha()">
+                        <i class="fa-solid fa-arrow-right"></i> Proceed to Password Check
+                    </button>
+                    <a href="code4.html" class="bank-btn-secondary" style="font-size: 0.85rem; padding: 11px 16px; margin-left: 10px;">
+                        &larr; Back to Dashboard
+                    </a>
+                </div>
+
+                <!-- Step 2: Password Entry -->
+                <div id="password-entry" style="display: none;">
+                    <h2 class="card-heading">
+                        <i class="fa-solid fa-key" style="color: var(--c-darkred);"></i>
+                        Enter Account Password
+                    </h2>
+                    <p class="card-subheading">Enter your confidential account password to authorize retrieval of your real-time ledger balance.</p>
+
+                    <div class="bank-form-group">
+                        <label for="password">Account Password</label>
+                        <div class="bank-input-wrap">
+                            <input type="password" id="password" class="bank-input" placeholder="Enter your secret password" required>
+                            <button type="button" class="bank-btn-primary" onclick="checkPassword()">
+                                <i class="fa-solid fa-eye"></i> Show Balance
+                            </button>
+                        </div>
+                    </div>
+                    <a href="code4.html" class="bank-btn-secondary" style="font-size: 0.85rem; padding: 9px 16px;">
+                        &larr; Back to Dashboard
+                    </a>
+                </div>
+
+                <!-- Step 3: Balance Display Result -->
+                <div id="balance-display" style="display: none;">
+                    <div style="text-align: center; padding: 24px 16px;">
+                        <div style="width: 64px; height: 64px; background: rgba(21, 128, 61, 0.1); color: #15803d; border-radius: var(--fillet); display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 16px;">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700;">Verified Ledger Balance</p>
+                        <h2 id="balance-amount" style="font-size: 2.8rem; font-weight: 800; color: var(--c-darkred); letter-spacing: -0.02em; margin: 8px 0 16px;">₹0.00</h2>
+                        <p style="font-size: 0.92rem; color: var(--text-secondary); max-width: 440px; margin: 0 auto 24px;">Your account is in good standing. All pending deposits and debits have been reconciled.</p>
+                        
+                        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                            <a href="code4.html" class="bank-btn-primary">
+                                <i class="fa-solid fa-house"></i> Return to Dashboard
+                            </a>
+                            <a href="transactions.html" class="bank-btn-secondary">
+                                <i class="fa-solid fa-receipt"></i> View Statement
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="statusMessage" class="bank-status-box" style="margin-top: 20px;"></div>
+            </div>
+
+            <!-- Right: Real Bank Context Sidebars -->
+            <aside class="bank-sidebar">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-id-card"></i> Account Details</h3>
+                    <ul class="account-kv-list">
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Account Number</span>
+                            <span class="account-kv-val" id="accNumberSnapshot">•••• •••• •••• ----</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Account Holder</span>
+                            <span class="account-kv-val" id="accountHolderSnapshot">--</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Currency</span>
+                            <span class="account-kv-val">INR (₹)</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Overdraft Limit</span>
+                            <span class="account-kv-val">₹0.00</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Interest Accrued (7.25%)</span>
+                            <span class="account-kv-val" style="color: #15803d;">Credited Monthly</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-shield-halved"></i> Data Privacy</h3>
+                    <div class="security-features">
+                        <div class="sec-item">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <div><strong>Privacy Protected:</strong> Your financial data is never exposed without end-to-end credential authorization.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-compass"></i> Frequent Services</h3>
+                    <div class="quick-nav-grid">
+                        <a href="deposit.html" class="quick-nav-btn"><i class="fa-solid fa-money-bill-wave"></i> Deposit</a>
+                        <a href="withdraw.html" class="quick-nav-btn"><i class="fa-solid fa-money-bill-transfer"></i> Withdraw</a>
+                        <a href="send-money.html" class="quick-nav-btn"><i class="fa-solid fa-paper-plane"></i> Send Money</a>
+                        <a href="transactions.html" class="quick-nav-btn"><i class="fa-solid fa-receipt"></i> Statement</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <p>&copy; 2025 Infinity Bank. All rights reserved. Server Time: <span id="server-time"></span></p>
+            <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms & Conditions</a></p>
+        </footer>
+    </div>
+
+    <script type="module">
+        const accountNumber = localStorage.getItem("accountNumber");
+        const storedName = localStorage.getItem("name");
+
+        if (!accountNumber) {
+            alert("Session expired. Please login again.");
+            window.location.href = "login.html";
+        }
+
+        if (storedName) {
+            document.getElementById("userNameDisplay").textContent = storedName;
+            document.getElementById("accountHolderSnapshot").textContent = storedName;
+        }
+        if (accountNumber) {
+            document.getElementById("accNumberSnapshot").textContent = "•••• " + accountNumber.slice(-4);
+        }
+
+        function verifyCaptcha() {
+            const checkbox = document.getElementById('robot-checkbox');
+            if (!checkbox.checked) {
+                alert("Please check the verification box to proceed.");
+                return;
+            }
+            document.getElementById('captcha-verification').style.display = 'none';
+            document.getElementById('password-entry').style.display = 'block';
+            document.getElementById('password').focus();
+        }
+
+        async function checkPassword() {
+            const password = document.getElementById("password").value;
+            if (!password) {
+                alert("Please enter your password.");
+                return;
+            }
+
+            try {
+                const { default: supabase } = await import('./js/supabaseClient.js');
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('password, balance')
+                    .eq('account_number', accountNumber)
+                    .single();
+
+                if (error || !data) {
+                    alert("Account not found.");
+                    return;
+                }
+
+                if (data.password === password) {
+                    document.getElementById('password-entry').style.display = 'none';
+                    document.getElementById('balance-display').style.display = 'block';
+                    const bal = Number(data.balance || 0);
+                    document.getElementById('balance-amount').textContent = "₹" + bal.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    localStorage.setItem("balance", bal);
+                } else {
+                    alert("Incorrect password!");
+                }
+            } catch (error) {
+                console.error("Supabase balance check error:", error);
+                alert("Failed to check balance. Please check connection.");
+            }
+        }
+
+        window.verifyCaptcha = verifyCaptcha;
+        window.checkPassword = checkPassword;
+
+        function updateServerTime() {
+            const serverTimeElement = document.getElementById("server-time");
+            if (serverTimeElement) {
+                serverTimeElement.textContent = new Date().toLocaleTimeString();
+            }
+        }
+        updateServerTime();
+        setInterval(updateServerTime, 1000);
+    </script>
+</body>
+</html>

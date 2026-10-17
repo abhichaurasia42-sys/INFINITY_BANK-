@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Recharge - Infinity Bank</title>
+    <link rel="stylesheet" href="styles_bank.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .service-type-toggle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+        .toggle-card {
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--fillet);
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            background: var(--bg-subtle);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .toggle-card.active {
+            border-color: var(--c-darkred);
+            background: var(--c-champagne);
+            color: var(--c-darkred);
+            box-shadow: 0 2px 8px rgba(139, 9, 9, 0.12);
+        }
+        .toggle-card input[type="radio"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bank App Header -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="code4.html" class="bank-brand">
+                <img src="logo.jpg" alt="Infinity Bank Logo">
+                <div>
+                    <div class="bank-brand-title">Infinity Bank</div>
+                    <div class="bank-brand-sub">Secure Digital Banking Portal</div>
+                </div>
+            </a>
+            <div class="bank-header-right">
+                <div class="user-badge">
+                    <div class="user-badge-icon"><i class="fa-solid fa-user"></i></div>
+                    <span id="userNameDisplay">Account Holder</span>
+                </div>
+                <a href="code4.html" class="btn-nav-dashboard">
+                    <i class="fa-solid fa-arrow-left"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bank-shell">
+        <!-- Hero Breadcrumbs & Live Balance Strip -->
+        <div class="bank-page-hero">
+            <div class="hero-left">
+                <div class="hero-icon" style="color: var(--c-darkred);"><i class="fa-solid fa-bolt"></i></div>
+                <div>
+                    <div class="hero-breadcrumbs">
+                        <a href="code4.html">Dashboard</a> / Banking Services / Recharge
+                    </div>
+                    <h1 class="hero-title">Mobile & DTH Recharge</h1>
+                    <p class="hero-desc">Instant prepaid recharge for all major telecom operators and direct-to-home providers.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="hero-balance-label">Available Balance</span>
+                <span class="hero-balance-val" id="liveBalanceDisplay">₹0.00</span>
+                <span class="hero-balance-status"><i class="fa-solid fa-circle-check"></i> Instant Clearance</span>
+            </div>
+        </div>
+
+        <!-- 2-Column Filled Real Bank Grid -->
+        <div class="bank-grid-layout">
+            <!-- Left: Recharge Workspace -->
+            <div class="bank-main-card">
+                <h2 class="card-heading">
+                    <i class="fa-solid fa-satellite-dish" style="color: var(--c-darkred);"></i>
+                    Fast Recharge Services
+                </h2>
+                <p class="card-subheading">Choose your recharge service, enter connection details, and complete payment with instant OTP verification.</p>
+
+                <!-- Toggle Cards -->
+                <div class="service-type-toggle">
+                    <label class="toggle-card active" id="simToggle" onclick="switchProvider('sim')">
+                        <input type="radio" name="providerRadio" value="sim" checked>
+                        <i class="fa-solid fa-mobile-screen-button"></i> Mobile Prepaid SIM
+                    </label>
+                    <label class="toggle-card" id="tvToggle" onclick="switchProvider('tv')">
+                        <input type="radio" name="providerRadio" value="tv">
+                        <i class="fa-solid fa-tv"></i> DTH / Cable TV
+                    </label>
+                </div>
+
+                <!-- SIM Options -->
+                <div id="sim-options">
+                    <div class="bank-form-group">
+                        <label for="sim-company">Select Telecom Operator</label>
+                        <select id="sim-company" class="bank-select">
+                            <option value="jio">Jio Prepaid</option>
+                            <option value="airtel">Airtel 5G Prepaid</option>
+                            <option value="vi">Vodafone Idea (Vi)</option>
+                            <option value="bsnl">BSNL Prepaid</option>
+                        </select>
+                    </div>
+
+                    <div class="bank-form-group">
+                        <label for="sim-number">10-Digit Mobile Number</label>
+                        <input type="tel" id="sim-number" class="bank-input" placeholder="e.g. 9876543210" maxlength="10" style="width: 100%;">
+                    </div>
+
+                    <div class="bank-form-group">
+                        <label for="sim-amount">Recharge Plan Amount (INR)</label>
+                        <div class="bank-input-wrap">
+                            <span class="currency-affix">₹</span>
+                            <input type="number" id="sim-amount" class="bank-input" placeholder="e.g. 299">
+                            <button type="button" class="bank-btn-primary" onclick="requestOTP('sim')">
+                                <i class="fa-solid fa-paper-plane"></i> Get OTP
+                            </button>
+                        </div>
+                        <div class="quick-chips">
+                            <button type="button" class="chip-btn" onclick="setRechargeAmount('sim', 199)">₹199 (1.5GB/day)</button>
+                            <button type="button" class="chip-btn" onclick="setRechargeAmount('sim', 299)">₹299 (2GB/day)</button>
+                            <button type="button" class="chip-btn" onclick="setRechargeAmount('sim', 666)">₹666 (84 Days)</button>
+                            <button type="button" class="chip-btn" onclick="setRechargeAmount('sim', 2999)">₹2,999 (Annual)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TV Cable Options -->
+                <div id="tv-cable-options" style="display: none;">
+                    <div class="bank-form-group">
+                        <label for="tv-company">Select DTH Provider</label>
+                        <select id="tv-company" class="bank-select">
+                            <option value="tata-play">Tata Play (formerly Tata Sky)</option>
+                            <option value="airtel-dth">Airtel Digital TV</option>
+                            <option value="dish-tv">Dish TV</option>
+                            <option value="d2h">Videocon d2h</option>
+                            <option value="sun-direct">Sun Direct</option>
+                        </select>
+                    </div>
+
+                    <div class="bank-form-group">
+                        <label for="tv-customer-id">Subscriber ID / Smart Card Number</label>
+                        <input type="text" id="tv-customer-id" class="bank-input" placeholder="e.g. 1029384756" style="width: 100%;">
+                    </div>
+
+                    <div class="bank-form-group">
+                        <label for="tv-amount">Recharge Amount (INR)</label>
+                        <div class="bank-input-wrap">
+                            <span class="currency-affix">₹</span>
+                            <input type="number" id="tv-amount" class="bank-input" placeholder="e.g. 450">
+                            <button type="button" class="bank-btn-primary" onclick="requestOTP('tv')">
+                                <i class="fa-solid fa-paper-plane"></i> Get OTP
+                            </button>
+                        </div>
+                        <div class="quick-chips">
+                            <button type="button" class="chip-btn" onclick="setRechargeAmount('tv', 300)">+ ₹300</button>
+                            <button type="button" class="chip-btn" onclick="setRechargeAmount('tv', 500)">+ ₹500</button>
+                            <button type="button" class="chip-btn" onclick="setRechargeAmount('tv', 1000)">+ ₹1,000</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OTP Section -->
+                <div id="otp-section" style="display: none; margin-top: 24px; padding-top: 18px; border-top: 1px dashed var(--border-light);">
+                    <div class="bank-form-group">
+                        <label for="recharge-otp">Security Verification Code (OTP)</label>
+                        <div class="bank-input-wrap">
+                            <input type="text" id="recharge-otp" class="bank-input" placeholder="6-digit authorization code" maxlength="6">
+                            <button type="button" class="bank-btn-primary" onclick="confirmRecharge()" style="background: var(--c-darkred);">
+                                <i class="fa-solid fa-bolt"></i> Authorize Recharge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="statusMessage" class="bank-status-box" style="margin-top: 16px;"></div>
+
+                <div style="margin-top: 20px;">
+                    <a href="code4.html" class="bank-btn-secondary" style="font-size: 0.85rem; padding: 8px 14px;">
+                        &larr; Back to Dashboard
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Real Bank Context Sidebars -->
+            <aside class="bank-sidebar">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-circle-check"></i> Instant Activation</h3>
+                    <ul class="account-kv-list">
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Recharge SLA</span>
+                            <span class="account-kv-val" style="color: #15803d;">Under 15 Seconds</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Operator Commission Fee</span>
+                            <span class="account-kv-val" style="color: #15803d;">₹0.00 (Zero Surcharge)</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Cashback Points</span>
+                            <span class="account-kv-val">2X Reward Points</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Debited From</span>
+                            <span class="account-kv-val" id="accNumberSnapshot">•••• •••• •••• ----</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-shield-halved"></i> 100% Refund Guarantee</h3>
+                    <div class="security-features">
+                        <div class="sec-item">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            <div><strong>Auto Refund Policy:</strong> If the telecom operator network fails, your money is credited back instantly.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-compass"></i> Banking Shortcuts</h3>
+                    <div class="quick-nav-grid">
+                        <a href="bill-Pay.html" class="quick-nav-btn"><i class="fa-solid fa-file-invoice"></i> Bill Pay</a>
+                        <a href="send-money.html" class="quick-nav-btn"><i class="fa-solid fa-paper-plane"></i> Send Money</a>
+                        <a href="transactions.html" class="quick-nav-btn"><i class="fa-solid fa-receipt"></i> Statement</a>
+                        <a href="deposit.html" class="quick-nav-btn"><i class="fa-solid fa-money-bill-wave"></i> Deposit</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <p>&copy; 2025 Infinity Bank. All rights reserved. Server Time: <span id="server-time"></span></p>
+            <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms & Conditions</a></p>
+        </footer>
+    </div>
+
+    <script>
+        const accountNumber = localStorage.getItem("accountNumber");
+        const storedName = localStorage.getItem("name");
+        let storedBalance = localStorage.getItem("balance") || "0";
+        let activeProvider = "sim";
+
+        if (!accountNumber) {
+            alert("User not logged in! Redirecting...");
+            window.location.href = "login.html";
+        }
+
+        if (storedName) {
+            document.getElementById("userNameDisplay").textContent = storedName;
+        }
+        if (accountNumber) {
+            document.getElementById("accNumberSnapshot").textContent = "•••• " + accountNumber.slice(-4);
+        }
+
+        function updateBalanceUI(bal) {
+            document.getElementById("liveBalanceDisplay").textContent = 
+                "₹" + Number(bal).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        updateBalanceUI(storedBalance);
+
+        function switchProvider(type) {
+            activeProvider = type;
+            const simToggle = document.getElementById("simToggle");
+            const tvToggle = document.getElementById("tvToggle");
+            const simOptions = document.getElementById("sim-options");
+            const tvOptions = document.getElementById("tv-cable-options");
+
+            if (type === "sim") {
+                simToggle.classList.add("active");
+                tvToggle.classList.remove("active");
+                simOptions.style.display = "block";
+                tvOptions.style.display = "none";
+            } else {
+                tvToggle.classList.add("active");
+                simToggle.classList.remove("active");
+                tvOptions.style.display = "block";
+                simOptions.style.display = "none";
+            }
+        }
+
+        function setRechargeAmount(type, val) {
+            if (type === 'sim') {
+                document.getElementById("sim-amount").value = val;
+            } else {
+                document.getElementById("tv-amount").value = val;
+            }
+        }
+
+        function showMessage(text, type) {
+            const msgBox = document.getElementById("statusMessage");
+            msgBox.className = "bank-status-box show " + type;
+            msgBox.innerHTML = (type === 'success' ? '<i class="fa-solid fa-circle-check"></i> ' : '<i class="fa-solid fa-circle-exclamation"></i> ') + text;
+        }
+
+        async function requestOTP(type) {
+            let amount = type === "sim" ? document.getElementById("sim-amount").value : document.getElementById("tv-amount").value;
+            let refNum = type === "sim" ? document.getElementById("sim-number").value : document.getElementById("tv-customer-id").value;
+
+            if (!refNum || !amount || parseFloat(amount) <= 0) {
+                showMessage("Please fill out your connection number and a valid recharge amount.", "error");
+                return;
+            }
+
+            showMessage("Requesting authorization OTP...", "info");
+
+            try {
+                const response = await fetch("/request-otp", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ accountNumber })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    showMessage("Secure authorization OTP dispatched to your registered email.", "success");
+                    document.getElementById("otp-section").style.display = "block";
+                } else {
+                    showMessage(data.message || "Failed to generate OTP.", "error");
+                }
+            } catch (err) {
+                showMessage("Network error requesting OTP.", "error");
+            }
+        }
+
+        async function confirmRecharge() {
+            let amount = activeProvider === "sim" ? parseFloat(document.getElementById("sim-amount").value) : parseFloat(document.getElementById("tv-amount").value);
+            const otp = document.getElementById("recharge-otp").value.trim();
+
+            if (!amount || !otp) {
+                showMessage("Please enter both the recharge amount and OTP.", "error");
+                return;
+            }
+
+            showMessage("Authorizing recharge with service provider...", "info");
+
+            try {
+                const response = await fetch("/recharge", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ accountNumber, amount, otp })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage("Recharge successful! ₹" + amount.toLocaleString("en-IN") + " processed immediately.", "success");
+                    document.getElementById("otp-section").style.display = "none";
+                    document.getElementById("recharge-otp").value = "";
+                    if (data.newBalance !== undefined) {
+                        localStorage.setItem("balance", data.newBalance);
+                        updateBalanceUI(data.newBalance);
+                    }
+                } else {
+                    showMessage(data.message || "Recharge authorization failed. Check OTP or balance.", "error");
+                }
+            } catch (error) {
+                showMessage("Error processing recharge. Please try again.", "error");
+            }
+        }
+
+        function updateServerTime() {
+            const serverTimeElement = document.getElementById("server-time");
+            if (serverTimeElement) {
+                serverTimeElement.textContent = new Date().toLocaleTimeString();
+            }
+        }
+        updateServerTime();
+        setInterval(updateServerTime, 1000);
+    </script>
+</body>
+</html>

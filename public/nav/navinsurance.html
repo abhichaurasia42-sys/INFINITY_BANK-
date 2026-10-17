@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance & Protection - Infinity Bank</title>
+    <link rel="stylesheet" href="../styles_bank.css">
+</head>
+<body>
+
+    <!-- TOP BANK HEADER -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="../code4.html" class="bank-brand">
+                <img src="../logo.jpg" alt="Infinity Bank Logo">
+                <div class="bank-brand-text">
+                    <span class="bank-name">INFINITY BANK</span>
+                    <span class="bank-tagline">Retail & Corporate NetBanking</span>
+                </div>
+            </a>
+
+            <div class="bank-user-pill">
+                <div class="bank-user-avatar" id="navAvatar">U</div>
+                <div class="bank-user-info">
+                    <span class="user-greeting">Insurance Services</span>
+                    <span class="user-acc" id="navAccNumber">A/C: Loading...</span>
+                </div>
+                <div class="bank-balance-badge">
+                    <span class="lbl">Active Policies</span>
+                    <span class="val" style="color: #4ade80;">Covered</span>
+                </div>
+                <button class="bank-btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="bank-shell">
+        <nav class="bank-breadcrumbs">
+            <a href="../code4.html">Dashboard</a>
+            <span class="sep">/</span>
+            <span class="curr">Insurance & Family Protection</span>
+        </nav>
+
+        <section class="bank-hero-strip">
+            <div class="hero-left">
+                <div class="hero-icon-box">🛡️</div>
+                <div>
+                    <h1 class="hero-title">Insurance & Risk Protection</h1>
+                    <p class="hero-desc">Protect yourself, your family, and assets with top-tier Health, Term Life, Motor, and International Travel covers.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="lbl">Claim Settlement Ratio</span>
+                <span class="val" style="color: #4ade80;">99.4%</span>
+                <span class="sub">Cashless claim approvals within 30 min</span>
+            </div>
+        </section>
+
+        <div class="bank-grid-layout">
+            <div class="bank-main-col">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                    <!-- HEALTH INSURANCE -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-darkred); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">10,000+ Hospitals</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Comprehensive Health Insurance</h3>
+                            <div style="font-size: 1.35rem; font-weight: 900; color: var(--c-darkred); margin-bottom: 8px;">Up to ₹10 Lakhs <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">cover</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Cashless hospitalization across India. Daycare procedures covered. Zero co-pay and pre-existing illness coverage after waiting period.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="applyPlan('Health Insurance')">Get Free Quote</button>
+                    </div>
+
+                    <!-- TERM LIFE INSURANCE -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: #15803d; text-transform: uppercase; background: #f0fdf4; padding: 3px 8px; border-radius: var(--fillet);">Life Security</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Term Life Insurance</h3>
+                            <div style="font-size: 1.35rem; font-weight: 900; color: var(--c-darkred); margin-bottom: 8px;">₹1 Crore Cover <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">@ ₹490/mo</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                High sum assured for complete financial security of your dependents. Tax savings up to ₹1.5 Lakh under Section 80C.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="applyPlan('Term Life Insurance')">Calculate Premium</button>
+                    </div>
+
+                    <!-- CAR / MOTOR INSURANCE -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-darkred); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">Instant Policy Issuance</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Motor & Car Insurance</h3>
+                            <div style="font-size: 1.35rem; font-weight: 900; color: var(--c-coyote); margin-bottom: 8px;">Zero-Depreciation</div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Comprehensive coverage for third-party liability, personal accident, and vehicle damages. 24x7 nationwide roadside assistance.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="applyPlan('Car Insurance')">Instant Renewal</button>
+                    </div>
+
+                    <!-- TRAVEL INSURANCE -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-darkred); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">Global Coverage</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Worldwide Travel Cover</h3>
+                            <div style="font-size: 1.35rem; font-weight: 900; color: var(--c-darkred); margin-bottom: 8px;">From ₹299 <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">/ trip</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                International medical emergency cover, flight cancellation compensation, baggage loss protection, and passport assistance worldwide.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="applyPlan('Travel Insurance')">Buy Travel Policy</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <a href="../code4.html" class="bank-btn-secondary" style="text-decoration: none;">← Return to NetBanking Dashboard</a>
+                </div>
+            </div>
+
+            <div class="bank-sidebar-col">
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Claims Assistance</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px;">
+                        Need emergency cashless hospitalization or immediate motor claim survey?
+                    </p>
+                    <div style="font-size: 1.1rem; font-weight: 800; color: var(--c-darkred);">
+                        📞 1800-888-9999
+                    </div>
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">Dedicated 24x7 Emergency Insurance Desk</span>
+                </div>
+
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">IRDAI Certified Corporate Agent</h3>
+                    <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">
+                        Infinity Bank Ltd is a licensed corporate agent registered under the Insurance Regulatory and Development Authority of India (IRDAI).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <div>&copy; 2025 Infinity Bank Ltd. All Rights Reserved. Regulated by RBI & IRDAI.</div>
+            <div>
+                <a href="../privacy-policy.html">Privacy Policy</a> | 
+                <a href="../terms-conditions.html">Terms & Conditions</a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const accountNumber = localStorage.getItem("accountNumber");
+        if (accountNumber) {
+            const masked = accountNumber.length > 4 ? "•••• " + accountNumber.slice(-4) : accountNumber;
+            document.getElementById("navAccNumber").textContent = `A/C: ${masked}`;
+            const userName = localStorage.getItem("name");
+            if (userName) document.getElementById("navAvatar").textContent = userName.charAt(0).toUpperCase();
+        }
+
+        function applyPlan(planName) {
+            alert(`Selected ${planName}. Our licensed insurance advisor will prepare a customized quotation for your account.`);
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = "../login.html";
+        }
+    </script>
+</body>
+</html>

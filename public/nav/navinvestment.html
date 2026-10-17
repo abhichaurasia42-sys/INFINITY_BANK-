@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investments & Wealth - Infinity Bank</title>
+    <link rel="stylesheet" href="../styles_bank.css">
+</head>
+<body>
+
+    <!-- TOP BANK HEADER -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="../code4.html" class="bank-brand">
+                <img src="../logo.jpg" alt="Infinity Bank Logo">
+                <div class="bank-brand-text">
+                    <span class="bank-name">INFINITY BANK</span>
+                    <span class="bank-tagline">Retail & Corporate NetBanking</span>
+                </div>
+            </a>
+
+            <div class="bank-user-pill">
+                <div class="bank-user-avatar" id="navAvatar">U</div>
+                <div class="bank-user-info">
+                    <span class="user-greeting">Wealth Management</span>
+                    <span class="user-acc" id="navAccNumber">A/C: Loading...</span>
+                </div>
+                <div class="bank-balance-badge">
+                    <span class="lbl">Portfolio Status</span>
+                    <span class="val" style="color: #4ade80;">● Active</span>
+                </div>
+                <button class="bank-btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="bank-shell">
+        <nav class="bank-breadcrumbs">
+            <a href="../code4.html">Dashboard</a>
+            <span class="sep">/</span>
+            <span class="curr">Investments & Wealth Solutions</span>
+        </nav>
+
+        <section class="bank-hero-strip">
+            <div class="hero-left">
+                <div class="hero-icon-box">📈</div>
+                <div>
+                    <h1 class="hero-title">Wealth & Investment Portfolio</h1>
+                    <p class="hero-desc">Grow capital securely through curated Fixed Deposits, Mutual Fund SIPs, Sovereign Gold, and Tax-Saving instruments.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="lbl">Top FD Return Rate</span>
+                <span class="val" style="color: var(--c-gold); font-size: 1.55rem; font-weight: 800;">7.60% p.a.</span>
+                <span class="sub">Senior citizens get +0.50% extra</span>
+            </div>
+        </section>
+
+        <div class="bank-grid-layout">
+            <div class="bank-main-col">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                    <!-- FD CARD -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-darkred); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">Guaranteed Return</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Fixed Deposits (FD)</h3>
+                            <div style="font-size: 1.35rem; font-weight: 900; color: var(--c-darkred); margin-bottom: 8px;">Up to 7.60% <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">p.a.</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                High liquidity with flexible tenures from 7 days to 10 years. Premature withdrawal facility and loan against FD up to 90%.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="invest('Fixed Deposit')">Open FD Online</button>
+                    </div>
+
+                    <!-- MUTUAL FUNDS CARD -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-darkred); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">Zero Commission Direct</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Mutual Funds & SIP</h3>
+                            <div style="font-size: 1.35rem; font-weight: 900; color: #15803d; margin-bottom: 8px;">From ₹500 <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">/ month</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Hand-picked Equity, Balanced, and Debt mutual fund schemes from top AMCs. 100% paperless systematic investment plans.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="invest('Mutual Funds')">Start SIP</button>
+                    </div>
+
+                    <!-- DIGITAL GOLD CARD -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-darkred); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">24K 99.9% Purity</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Digital Gold & SGB</h3>
+                            <div style="font-size: 1.35rem; font-weight: 900; color: var(--c-coyote); margin-bottom: 8px;">From ₹10 <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">onwards</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Buy and sell 24 Karat certified physical gold stored securely in insured vaults. Redeem digitally or request doorstep physical coin delivery.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="invest('Digital Gold')">Buy Digital Gold</button>
+                    </div>
+
+                    <!-- TAX SAVING ELSS -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: #15803d; text-transform: uppercase; background: #f0fdf4; padding: 3px 8px; border-radius: var(--fillet);">Section 80C Tax Relief</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Tax Saver ELSS & PPF</h3>
+                            <div style="font-size: 1.35rem; font-weight: 900; color: var(--c-darkred); margin-bottom: 8px;">Save up to ₹46,800</div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Lock-in period of just 3 years with twin benefits of wealth creation and tax deduction under Section 80C of IT Act.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="invest('Tax Saver')">Explore ELSS</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <a href="../code4.html" class="bank-btn-secondary" style="text-decoration: none;">← Return to NetBanking Dashboard</a>
+                </div>
+            </div>
+
+            <div class="bank-sidebar-col">
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Investment Advisory</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                        Infinity Bank Wealth Advisors assist you in building personalized portfolios aligned with your risk tolerance and financial goals.
+                    </p>
+                </div>
+
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">SEBI & RBI Regulatory Compliance</h3>
+                    <ul class="sidebar-checklist">
+                        <li>
+                            <span class="chk">✓</span>
+                            <span>Direct schemes with lowest expense ratio.</span>
+                        </li>
+                        <li>
+                            <span class="chk">✓</span>
+                            <span>FD deposits backed by DICGC insurance up to ₹5,00,000.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <div>&copy; 2025 Infinity Bank Ltd. All Rights Reserved. Regulated by RBI & SEBI.</div>
+            <div>
+                <a href="../privacy-policy.html">Privacy Policy</a> | 
+                <a href="../terms-conditions.html">Terms & Conditions</a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const accountNumber = localStorage.getItem("accountNumber");
+        if (accountNumber) {
+            const masked = accountNumber.length > 4 ? "•••• " + accountNumber.slice(-4) : accountNumber;
+            document.getElementById("navAccNumber").textContent = `A/C: ${masked}`;
+            const userName = localStorage.getItem("name");
+            if (userName) document.getElementById("navAvatar").textContent = userName.charAt(0).toUpperCase();
+        }
+
+        function invest(product) {
+            alert(`Initiating digital onboarding for ${product}. Our automated portfolio builder will activate shortly.`);
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = "../login.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* Reset base styles */
+body, h1, p, input, button, a {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: #F4F6F9;
+    color: #1A202C;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: #FFFFFF;
+    padding: 30px 40px;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(30, 45, 74, 0.10);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.header h1 {
+    margin-bottom: 10px;
+    color: #1E2D4A;
+}
+
+.header p {
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    color: #4A5568;
+}
+
+.content {
+    margin-bottom: 20px;
+}
+
+input[type="password"], input[type="checkbox"] {
+    margin-top: 10px;
+    padding: 12px 15px;
+    width: 100%;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1A202C;
+    transition: all 0.3s ease;
+}
+
+input[type="password"]:focus {
+    border-color: #1E2D4A;
+    box-shadow: 0 0 0 3px rgba(30, 45, 74, 0.12);
+    outline: none;
+}
+
+button {
+    padding: 12px 20px;
+    background: #1E2D4A;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #2A3F6B;
+    transform: scale(1.03);
+}
+
+.go-dashboard {
+    text-decoration: none;
+    color: #fff;
+    background-color: #27AE60;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 20px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.go-dashboard:hover {
+    background-color: #1e8a4a;
+}
+
+#balance-amount {
+    font-size: 2rem;
+    color: #27AE60;
+    margin: 10px 0;
+}
+
+.footer {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-top: 30px;
+}
+
+.back-to-dashboard {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #1E2D4A;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}

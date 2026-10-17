@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Offers & Rewards - Infinity Bank</title>
+    <link rel="stylesheet" href="../styles_bank.css">
+</head>
+<body>
+
+    <!-- TOP BANK HEADER -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="../code4.html" class="bank-brand">
+                <img src="../logo.jpg" alt="Infinity Bank Logo">
+                <div class="bank-brand-text">
+                    <span class="bank-name">INFINITY BANK</span>
+                    <span class="bank-tagline">Retail & Corporate NetBanking</span>
+                </div>
+            </a>
+
+            <div class="bank-user-pill">
+                <div class="bank-user-avatar" id="navAvatar">U</div>
+                <div class="bank-user-info">
+                    <span class="user-greeting">Rewards Portal</span>
+                    <span class="user-acc" id="navAccNumber">A/C: Loading...</span>
+                </div>
+                <div class="bank-balance-badge">
+                    <span class="lbl">Reward Points</span>
+                    <span class="val" style="color: var(--c-gold);">1,450 Pts</span>
+                </div>
+                <button class="bank-btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="bank-shell">
+        <nav class="bank-breadcrumbs">
+            <a href="../code4.html">Dashboard</a>
+            <span class="sep">/</span>
+            <span class="curr">Exclusive Banking Offers & Rewards</span>
+        </nav>
+
+        <section class="bank-hero-strip">
+            <div class="hero-left">
+                <div class="hero-icon-box">🎁</div>
+                <div>
+                    <h1 class="hero-title">Offers, Cashbacks & Privileges</h1>
+                    <p class="hero-desc">Unlock curated partner discounts, debit card cashbacks, and special interest enhancements.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="lbl">Monthly Savings Generated</span>
+                <span class="val" style="color: #4ade80; font-size: 1.55rem; font-weight: 800;">₹ 2,450</span>
+                <span class="sub">Across merchant & card offers</span>
+            </div>
+        </section>
+
+        <div class="bank-grid-layout">
+            <div class="bank-main-col">
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <!-- OFFER 1 -->
+                    <div class="bank-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                        <div style="max-width: 600px;">
+                            <span style="font-size: 0.72rem; font-weight: 700; color: #15803d; text-transform: uppercase; background: #f0fdf4; padding: 3px 8px; border-radius: var(--fillet);">Card Privilege</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 6px 0 2px;">🔥 5% Unlimited Debit Card Cashback</h3>
+                            <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.5;">
+                                Get 5% direct cashback on dining, fuel, and online shopping via your Infinity RuPay Platinum Debit Card.
+                            </p>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Valid on POS & E-Commerce spends above ₹500</span>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="claimOffer('5% Debit Card Cashback')">Activate Offer</button>
+                    </div>
+
+                    <!-- OFFER 2 -->
+                    <div class="bank-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                        <div style="max-width: 600px;">
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-darkred); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">Yield Booster</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 6px 0 2px;">📈 +0.50% Extra Fixed Deposit Interest</h3>
+                            <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.5;">
+                                Book an FD of ₹1,00,000 or above for 18 months and unlock special yield enhancement up to 7.60% p.a.
+                            </p>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Valid for online digital bookings this month</span>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="claimOffer('Extra FD Interest')">Book Special FD</button>
+                    </div>
+
+                    <!-- OFFER 3 -->
+                    <div class="bank-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                        <div style="max-width: 600px;">
+                            <span style="font-size: 0.72rem; font-weight: 700; color: #15803d; text-transform: uppercase; background: #f0fdf4; padding: 3px 8px; border-radius: var(--fillet);">Zero Processing Fee</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 6px 0 2px;">🏦 Pre-Approved Personal Loan at 10.25%</h3>
+                            <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.5;">
+                                Pre-approved credit line up to ₹5,00,000 with 100% processing fee waiver. Instant disbursement into your savings account.
+                            </p>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Zero documentation required for verified NetBanking users</span>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="claimOffer('Pre-Approved Personal Loan')">Claim Disbursal</button>
+                    </div>
+
+                    <!-- OFFER 4 -->
+                    <div class="bank-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                        <div style="max-width: 600px;">
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-darkred); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">Merchant Partner</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 6px 0 2px;">🛍️ Flat 20% Off Across Partner Portals</h3>
+                            <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.5;">
+                                Enjoy up to ₹1,500 instant discount on flight bookings, grocery orders, and electronics on MakeMyTrip, Swiggy, and Amazon.
+                            </p>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Use promo code: INFINITY20 at merchant checkout</span>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="claimOffer('Partner Discount')">View Merchants</button>
+                    </div>
+
+                    <!-- OFFER 5 -->
+                    <div class="bank-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                        <div style="max-width: 600px;">
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-coyote); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">Global Travel</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 6px 0 2px;">🌍 Zero Forex Markup on International POS</h3>
+                            <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.5;">
+                                Spend anywhere in the world without paying foreign exchange currency conversion markups.
+                            </p>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Applicable on all global RuPay Platinum card transactions</span>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="claimOffer('Zero Forex Markup')">Enable Forex</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <a href="../code4.html" class="bank-btn-secondary" style="text-decoration: none;">← Return to NetBanking Dashboard</a>
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="bank-sidebar-col">
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Infinity Rewards Wallet</h3>
+                    <div class="sidebar-info-row">
+                        <span class="label">Accumulated Points</span>
+                        <span class="value" style="color: var(--c-darkred); font-weight: 800;">1,450 Pts</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">Point Cash Value</span>
+                        <span class="value">₹362.50</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">Expiring Soon</span>
+                        <span class="value">0 Pts (Valid 3 Yrs)</span>
+                    </div>
+                    <button type="button" class="bank-btn-primary" style="margin-top: 14px; width: 100%;" onclick="alert('Redemption catalogue loaded. You can convert points to cashback or e-vouchers.')">
+                        Redeem Points Now
+                    </button>
+                </div>
+
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Privilege Concierge</h3>
+                    <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5;">
+                        Have questions regarding voucher codes or cashback settlement timelines? Call our rewards desk at <strong>1800-888-9999</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <div>&copy; 2025 Infinity Bank Ltd. All Rights Reserved. Regulated by RBI.</div>
+            <div>
+                <a href="../privacy-policy.html">Privacy Policy</a> | 
+                <a href="../terms-conditions.html">Terms & Conditions</a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const accountNumber = localStorage.getItem("accountNumber");
+        if (accountNumber) {
+            const masked = accountNumber.length > 4 ? "•••• " + accountNumber.slice(-4) : accountNumber;
+            document.getElementById("navAccNumber").textContent = `A/C: ${masked}`;
+            const userName = localStorage.getItem("name");
+            if (userName) document.getElementById("navAvatar").textContent = userName.charAt(0).toUpperCase();
+        }
+
+        function claimOffer(offerName) {
+            alert(`Offer successfully activated for ${offerName}! Promo code and instructions dispatched to your registered email.`);
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = "../login.html";
+        }
+    </script>
+</body>
+</html>

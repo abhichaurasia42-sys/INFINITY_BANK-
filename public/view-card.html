@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account & Card Details - Infinity Bank</title>
+    <link rel="stylesheet" href="styles_bank.css">
+</head>
+<body>
+
+    <!-- TOP BANK HEADER -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="code4.html" class="bank-brand">
+                <img src="logo.jpg" alt="Infinity Bank Logo">
+                <div class="bank-brand-text">
+                    <span class="bank-name">INFINITY BANK</span>
+                    <span class="bank-tagline">Retail & Corporate NetBanking</span>
+                </div>
+            </a>
+
+            <div class="bank-user-pill">
+                <div class="bank-user-avatar" id="navAvatar">U</div>
+                <div class="bank-user-info">
+                    <span class="user-greeting">Welcome</span>
+                    <span class="user-acc" id="navAccNumber">A/C: Loading...</span>
+                </div>
+                <div class="bank-balance-badge">
+                    <span class="lbl">Available Balance</span>
+                    <span class="val" id="navLiveBalance">₹ --</span>
+                </div>
+                <button class="bank-btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="bank-shell">
+        <nav class="bank-breadcrumbs">
+            <a href="code4.html">Dashboard</a>
+            <span class="sep">/</span>
+            <span class="curr">Account & Card Overview</span>
+        </nav>
+
+        <section class="bank-hero-strip">
+            <div class="hero-left">
+                <div class="hero-icon-box">📋</div>
+                <div>
+                    <h1 class="hero-title">Account & Card Credentials</h1>
+                    <p class="hero-desc">Verified customer demographic, account information, and linked debit card details.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="lbl">KYC Status</span>
+                <span class="val" style="font-size: 1.1rem; color: #15803d;">● Fully Compliant</span>
+                <span class="sub" id="heroAccNumber">A/C: Loading...</span>
+            </div>
+        </section>
+
+        <div class="bank-grid-layout">
+            <div class="bank-main-col">
+                <div class="bank-card">
+                    <div class="bank-card-header">
+                        <div>
+                            <h2 class="bank-card-title">Customer Master Record</h2>
+                            <p class="bank-card-subtitle">Official records registered with Infinity Bank Ltd.</p>
+                        </div>
+                        <span class="bank-badge-secure">256-Bit SSL Encrypted</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px;">
+                        <div style="padding: 14px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Account Holder Name</span>
+                            <div style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-top: 4px;" id="name">Loading...</div>
+                        </div>
+
+                        <div style="padding: 14px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Account Number</span>
+                            <div style="font-size: 1.05rem; font-weight: 700; color: var(--c-darkred); margin-top: 4px; font-family: monospace;" id="accountNumber">Loading...</div>
+                        </div>
+
+                        <div style="padding: 14px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Linked Debit Card</span>
+                            <div style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-top: 4px; font-family: monospace;" id="cardNumber">Loading...</div>
+                        </div>
+
+                        <div style="padding: 14px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Available Ledger Balance</span>
+                            <div style="font-size: 1.15rem; font-weight: 800; color: var(--c-darkred); margin-top: 4px;">₹<span id="balance">0.00</span></div>
+                        </div>
+
+                        <div style="padding: 14px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Registered Email</span>
+                            <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-top: 4px;" id="email">Loading...</div>
+                        </div>
+
+                        <div style="padding: 14px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Date of Birth</span>
+                            <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-top: 4px;" id="dob">Loading...</div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 14px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle); margin-top: 16px;">
+                        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Communication Address</span>
+                        <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-top: 4px;" id="address">Loading...</div>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; margin-top: 24px;">
+                        <a href="code4.html" class="bank-btn-secondary" style="text-decoration: none;">← Back to Dashboard</a>
+                        <a href="view-card-details.html" class="bank-btn-primary" style="text-decoration: none;">Manage Card Controls →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bank-sidebar-col">
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Branch Information</h3>
+                    <div class="sidebar-info-row">
+                        <span class="label">Home Branch</span>
+                        <span class="value">Connaught Place, New Delhi</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">IFSC Code</span>
+                        <span class="value" style="font-family: monospace;">INFT0001092</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">MICR Code</span>
+                        <span class="value" style="font-family: monospace;">110024098</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">Account Type</span>
+                        <span class="value">Savings Retail</span>
+                    </div>
+                </div>
+
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Deposit Insurance</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                        Your deposits in Infinity Bank are insured up to <strong>₹5,00,000</strong> per depositor by the Deposit Insurance and Credit Guarantee Corporation (DICGC), a wholly owned subsidiary of RBI.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <div>&copy; 2025 Infinity Bank Ltd. All Rights Reserved.</div>
+            <div><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms & Conditions</a></div>
+        </footer>
+    </main>
+
+    <script type="module">
+        const accountNumber = localStorage.getItem("accountNumber");
+
+        if (!accountNumber) {
+            alert("No account number found! Please log in again.");
+            window.location.href = "login.html";
+        } else {
+            const maskedAcc = accountNumber.length > 4 ? "•••• " + accountNumber.slice(-4) : accountNumber;
+            document.getElementById("navAccNumber").textContent = `A/C: ${maskedAcc}`;
+            document.getElementById("heroAccNumber").textContent = `A/C: ${accountNumber}`;
+
+            try {
+                const { default: supabase } = await import('./js/supabaseClient.js');
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('name, email, account_number, card_number, address, dob, balance')
+                    .eq('account_number', accountNumber)
+                    .single();
+
+                if (data && !error) {
+                    document.getElementById("name").textContent = data.name || "N/A";
+                    document.getElementById("email").textContent = data.email || "N/A";
+                    document.getElementById("accountNumber").textContent = data.account_number || accountNumber;
+                    document.getElementById("cardNumber").textContent = data.card_number ? data.card_number.replace(/(.{4})/g, "$1 ").trim() : "N/A";
+                    document.getElementById("address").textContent = data.address || "N/A";
+                    document.getElementById("dob").textContent = data.dob || "N/A";
+                    document.getElementById("balance").textContent = Number(data.balance || 0).toLocaleString("en-IN");
+                    document.getElementById("navLiveBalance").textContent = "₹" + Number(data.balance || 0).toLocaleString("en-IN");
+                    if (data.name) {
+                        document.getElementById("navAvatar").textContent = data.name.charAt(0).toUpperCase();
+                    }
+                } else {
+                    const cachedName = localStorage.getItem("name");
+                    const cachedBal = localStorage.getItem("balance");
+                    if (cachedName) document.getElementById("name").textContent = cachedName;
+                    if (cachedBal) {
+                        document.getElementById("balance").textContent = Number(cachedBal).toLocaleString("en-IN");
+                        document.getElementById("navLiveBalance").textContent = "₹" + Number(cachedBal).toLocaleString("en-IN");
+                    }
+                }
+            } catch (err) {
+                console.error("Supabase load error:", err);
+            }
+        }
+
+        window.logout = function() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        };
+    </script>
+</body>
+</html>

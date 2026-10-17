@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Infinity Bank</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Content Container -->
+    <div class="main-container">
+        <!-- Left Half (Bank Info) -->
+        <div class="left-half">
+            <img src="logo.jpg" alt="Infinity Bank Logo" class="bank-logo">
+            <h2>Welcome to Infinity Bank</h2>
+            <p>Your trusted financial partner, providing secure and seamless banking.</p>
+            <p>Enjoy 24/7 customer support, instant transactions, and smart banking solutions.</p>
+            <div style="margin-top: 20px;">
+                <a href="index.html" style="font-size: 0.88rem; color: var(--c-teal); text-decoration: none; font-weight: 600;">&larr; Back to Home</a>
+            </div>
+        </div>
+
+        <!-- Right Half (Login Form) -->
+        <div class="right-half">
+            <div class="container">
+                <a href="code3.html" class="top-right">Create Account</a>
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Login to access your account</p>
+
+                <form onsubmit="event.preventDefault(); login();">
+                    <div class="input-group">
+                        <label for="accountNumber">Account Number:</label>
+                        <input type="text" id="accountNumber" placeholder="Enter your account number" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Remember Me</label>
+                    </div>
+
+                    <button type="submit">Login</button>
+                </form>
+
+                <p><a href="forgot-password.html">Forgot Password?</a></p>
+                <p id="message"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Infinity Bank. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+        async function login() {
+            const accountNumber = document.getElementById("accountNumber").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const message = document.getElementById("message");
+
+            if (!accountNumber || !password) {
+                message.textContent = "Please enter both Account Number and Password.";
+                message.style.color = "#E74C3C";
+                return;
+            }
+
+            message.textContent = "Authenticating...";
+            message.style.color = "#F5A623";
+
+            try {
+                const { default: supabase } = await import('./js/supabaseClient.js');
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('password, name, balance, transactions, card_number')
+                    .eq('account_number', accountNumber)
+                    .single();
+
+                if (error || !data) {
+                    message.textContent = "Account not found. Please check your account number.";
+                    message.style.color = "#E74C3C";
+                    return;
+                }
+
+                if (data.password !== password) {
+                    message.textContent = "Incorrect password. Please try again.";
+                    message.style.color = "#E74C3C";
+                    return;
+                }
+
+                // Successful login
+                message.textContent = "✓ Login successful! Redirecting to dashboard...";
+                message.style.color = "#27AE60";
+
+                localStorage.setItem("accountNumber", accountNumber);
+                localStorage.setItem("name", data.name);
+                localStorage.setItem("balance", data.balance);
+                localStorage.setItem("transactions", JSON.stringify(data.transactions || []));
+                if (data.card_number) localStorage.setItem("cardNumber", data.card_number);
+
+                setTimeout(() => { window.location.href = "code4.html"; }, 800);
+
+            } catch (e) {
+                console.error(e);
+                message.textContent = "Connection error. Please try again.";
+                message.style.color = "#E74C3C";
+            }
+        }
+
+        // Make login function global so the form onsubmit can call it
+        window.login = login;
+    </script>
+</body>
+</html>

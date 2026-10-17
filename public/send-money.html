@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Money - Infinity Bank</title>
+    <link rel="stylesheet" href="styles_bank.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .stepper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-subtle);
+            padding: 12px 18px;
+            border-radius: var(--fillet);
+        }
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        .step-item.active {
+            color: var(--c-darkred);
+        }
+        .step-num {
+            width: 24px;
+            height: 24px;
+            border-radius: var(--fillet-sm);
+            background: rgba(35, 25, 22, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+        .step-item.active .step-num {
+            background: var(--c-darkred);
+            color: #FFFFFF;
+        }
+        .hidden { display: none !important; }
+        .recipient-badge {
+            background: rgba(21, 128, 61, 0.1);
+            border: 1px solid rgba(21, 128, 61, 0.3);
+            color: #15803d;
+            padding: 10px 16px;
+            border-radius: var(--fillet);
+            margin-bottom: 18px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bank App Header -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="code4.html" class="bank-brand">
+                <img src="logo.jpg" alt="Infinity Bank Logo">
+                <div>
+                    <div class="bank-brand-title">Infinity Bank</div>
+                    <div class="bank-brand-sub">Secure Digital Banking Portal</div>
+                </div>
+            </a>
+            <div class="bank-header-right">
+                <div class="user-badge">
+                    <div class="user-badge-icon"><i class="fa-solid fa-user"></i></div>
+                    <span id="userNameDisplay">Account Holder</span>
+                </div>
+                <a href="code4.html" class="btn-nav-dashboard">
+                    <i class="fa-solid fa-arrow-left"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bank-shell">
+        <!-- Hero Breadcrumbs & Live Balance Strip -->
+        <div class="bank-page-hero">
+            <div class="hero-left">
+                <div class="hero-icon" style="color: var(--c-darkred);"><i class="fa-solid fa-paper-plane"></i></div>
+                <div>
+                    <div class="hero-breadcrumbs">
+                        <a href="code4.html">Dashboard</a> / Banking Services / Transfer Funds
+                    </div>
+                    <h1 class="hero-title">Instant Fund Transfer</h1>
+                    <p class="hero-desc">Transfer money instantly to any Infinity Bank account with verified zero-latency settlement.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="hero-balance-label">Available Balance</span>
+                <span class="hero-balance-val" id="liveBalanceDisplay">₹0.00</span>
+                <span class="hero-balance-status"><i class="fa-solid fa-circle-check"></i> IMPS / UPI Enabled</span>
+            </div>
+        </div>
+
+        <!-- 2-Column Filled Real Bank Grid -->
+        <div class="bank-grid-layout">
+            <!-- Left: Transaction Workspace -->
+            <div class="bank-main-card">
+                <!-- Stepper Progress -->
+                <div class="stepper">
+                    <div class="step-item active" id="stepIndicator1">
+                        <span class="step-num">1</span> Verify Recipient
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--border-subtle);"></i>
+                    <div class="step-item" id="stepIndicator2">
+                        <span class="step-num">2</span> Enter Amount
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--border-subtle);"></i>
+                    <div class="step-item" id="stepIndicator3">
+                        <span class="step-num">3</span> Authorize OTP
+                    </div>
+                </div>
+
+                <!-- Stage 1: Recipient Verification -->
+                <div id="stage1">
+                    <h2 class="card-heading">
+                        <i class="fa-solid fa-user-check" style="color: var(--c-darkred);"></i>
+                        Step 1: Recipient Account
+                    </h2>
+                    <p class="card-subheading">Enter the recipient's 15-digit Infinity Bank account number to verify account holder identity before transferring.</p>
+
+                    <div class="bank-form-group">
+                        <label for="recipientAccount">Beneficiary Account Number</label>
+                        <div class="bank-input-wrap">
+                            <input type="text" id="recipientAccount" class="bank-input" placeholder="e.g. 100029384756192" required>
+                            <button type="button" class="bank-btn-primary" onclick="verifyRecipient()">
+                                <i class="fa-solid fa-magnifying-glass"></i> Verify Account
+                            </button>
+                        </div>
+                    </div>
+                    <a href="code4.html" id="back1" class="bank-btn-secondary" style="font-size: 0.85rem; padding: 8px 14px; margin-top: 8px;">
+                        &larr; Back to Dashboard
+                    </a>
+                </div>
+
+                <!-- Stage 2: Amount Input -->
+                <div id="recipient-info" class="section hidden" style="margin-top: 10px;">
+                    <div class="recipient-badge">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Verified Beneficiary: <strong id="recipient-name"></strong></span>
+                    </div>
+
+                    <h2 class="card-heading">
+                        <i class="fa-solid fa-indian-rupee-sign" style="color: var(--c-darkred);"></i>
+                        Step 2: Transfer Amount
+                    </h2>
+                    <p class="card-subheading">Specify the transfer amount. Funds are credited immediately upon OTP authorization.</p>
+
+                    <div class="bank-form-group">
+                        <label for="amount">Amount to Send (INR)</label>
+                        <div class="bank-input-wrap">
+                            <span class="currency-affix">₹</span>
+                            <input type="number" id="amount" class="bank-input" placeholder="e.g. 5000" min="1" required>
+                            <button type="button" class="bank-btn-primary" onclick="requestOTP()">
+                                <i class="fa-solid fa-key"></i> Get OTP
+                            </button>
+                        </div>
+                        <div class="quick-chips">
+                            <button type="button" class="chip-btn" onclick="setAmount(500)">+ ₹500</button>
+                            <button type="button" class="chip-btn" onclick="setAmount(1000)">+ ₹1,000</button>
+                            <button type="button" class="chip-btn" onclick="setAmount(2000)">+ ₹2,000</button>
+                            <button type="button" class="chip-btn" onclick="setAmount(5000)">+ ₹5,000</button>
+                        </div>
+                    </div>
+                    <a href="code4.html" id="back2" class="bank-btn-secondary" style="font-size: 0.85rem; padding: 8px 14px; margin-top: 8px;">
+                        &larr; Back to Dashboard
+                    </a>
+                </div>
+
+                <!-- Stage 3: OTP Authorization -->
+                <div id="otp-section" class="section hidden" style="margin-top: 10px;">
+                    <h2 class="card-heading">
+                        <i class="fa-solid fa-shield-halved" style="color: var(--c-darkred);"></i>
+                        Step 3: Authorize Transfer
+                    </h2>
+                    <p class="card-subheading">Enter the high-security verification code sent to your registered email address.</p>
+
+                    <div class="bank-form-group">
+                        <label for="otp">Security One-Time Password (OTP)</label>
+                        <div class="bank-input-wrap">
+                            <input type="text" id="otp" class="bank-input" placeholder="Enter 6-digit OTP" maxlength="6" required>
+                            <button type="button" class="bank-btn-primary" onclick="sendMoney()" style="background: var(--c-darkred);">
+                                <i class="fa-solid fa-paper-plane"></i> Confirm & Send
+                            </button>
+                        </div>
+                    </div>
+                    <a href="code4.html" id="back3" class="bank-btn-secondary" style="font-size: 0.85rem; padding: 8px 14px; margin-top: 8px;">
+                        &larr; Back to Dashboard
+                    </a>
+                </div>
+
+                <!-- Message Feedback Box -->
+                <div id="message" class="bank-status-box" style="margin-top: 20px;"></div>
+            </div>
+
+            <!-- Right: Real Bank Context Sidebars -->
+            <aside class="bank-sidebar">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-id-card"></i> Transfer Limits</h3>
+                    <ul class="account-kv-list">
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">From Account</span>
+                            <span class="account-kv-val" id="accNumberSnapshot">•••• •••• •••• ----</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Single Transfer Limit</span>
+                            <span class="account-kv-val">₹50,000.00</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Daily Transfer Limit</span>
+                            <span class="account-kv-val">₹2,00,000.00</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Transfer Fee</span>
+                            <span class="account-kv-val" style="color: #15803d;">₹0.00 (Free)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-shield-halved"></i> Security Protocol</h3>
+                    <div class="security-features">
+                        <div class="sec-item">
+                            <i class="fa-solid fa-fingerprint"></i>
+                            <div><strong>Recipient Verification:</strong> System cross-references destination database to prevent misdirected transfers.</div>
+                        </div>
+                        <div class="sec-item">
+                            <i class="fa-solid fa-lock"></i>
+                            <div><strong>Zero Self-Transfer:</strong> Transfers require distinct sender and receiver accounts.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-compass"></i> Quick Banking</h3>
+                    <div class="quick-nav-grid">
+                        <a href="deposit.html" class="quick-nav-btn"><i class="fa-solid fa-money-bill-wave"></i> Deposit</a>
+                        <a href="withdraw.html" class="quick-nav-btn"><i class="fa-solid fa-money-bill-transfer"></i> Withdraw</a>
+                        <a href="transactions.html" class="quick-nav-btn"><i class="fa-solid fa-receipt"></i> Statement</a>
+                        <a href="check-balance.html" class="quick-nav-btn"><i class="fa-solid fa-wallet"></i> Balance</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <p>&copy; 2025 Infinity Bank. All rights reserved. Registered Digital Banking Institution.</p>
+            <p>24x7 Customer Support: 1800-200-INF | <a href="privacy-policy.html">Privacy</a> | <a href="terms-conditions.html">Terms</a></p>
+        </footer>
+    </div>
+
+    <script>
+        let accountNumber = localStorage.getItem("accountNumber");
+        const storedName = localStorage.getItem("name");
+        let storedBalance = localStorage.getItem("balance") || "0";
+
+        if (!accountNumber) {
+            alert("Session expired or user not logged in. Redirecting to login.");
+            window.location.href = "login.html";
+        }
+
+        if (storedName) {
+            document.getElementById("userNameDisplay").textContent = storedName;
+        }
+        if (accountNumber) {
+            document.getElementById("accNumberSnapshot").textContent = "•••• " + accountNumber.slice(-4);
+        }
+        updateBalanceUI(storedBalance);
+
+        function updateBalanceUI(bal) {
+            document.getElementById("liveBalanceDisplay").textContent = 
+                "₹" + Number(bal).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function setAmount(val) {
+            const current = Number(document.getElementById("amount").value) || 0;
+            document.getElementById("amount").value = current + val;
+        }
+
+        function showStatus(text, type) {
+            const msgBox = document.getElementById("message");
+            msgBox.className = "bank-status-box show " + type;
+            msgBox.innerHTML = (type === 'success' ? '<i class="fa-solid fa-circle-check"></i> ' : '<i class="fa-solid fa-circle-exclamation"></i> ') + text;
+        }
+
+        function showOnly(id) {
+            document.getElementById("back1").style.display = "none";
+            document.getElementById("back2").style.display = "none";
+            document.getElementById("back3").style.display = "none";
+
+            document.getElementById("stepIndicator1").classList.remove("active");
+            document.getElementById("stepIndicator2").classList.remove("active");
+            document.getElementById("stepIndicator3").classList.remove("active");
+
+            if (id === "recipient-info") {
+                document.getElementById("recipient-info").classList.remove("hidden");
+                document.getElementById("back2").style.display = "inline-flex";
+                document.getElementById("stepIndicator2").classList.add("active");
+            } else if (id === "otp-section") {
+                document.getElementById("otp-section").classList.remove("hidden");
+                document.getElementById("back3").style.display = "inline-flex";
+                document.getElementById("stepIndicator3").classList.add("active");
+            } else {
+                document.getElementById("back1").style.display = "inline-flex";
+                document.getElementById("stepIndicator1").classList.add("active");
+            }
+        }
+
+        async function verifyRecipient() {
+            const recipientAccount = document.getElementById("recipientAccount").value.trim();
+            if (!recipientAccount) {
+                showStatus("Please enter a valid recipient account number.", "error");
+                return;
+            }
+
+            showStatus("Verifying recipient account...", "info");
+
+            try {
+                const res = await fetch("/verify-recipient", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ accountNumber, recipientAccount }),
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    document.getElementById("recipient-name").textContent = data.name;
+                    showOnly("recipient-info");
+                    showStatus("Recipient verified successfully: " + data.name, "success");
+                } else {
+                    showStatus(data.message || "Recipient not found.", "error");
+                }
+            } catch (err) {
+                showStatus("Error verifying recipient. Please check connection.", "error");
+            }
+        }
+
+        async function requestOTP() {
+            const amount = document.getElementById("amount").value;
+            if (!amount || parseFloat(amount) <= 0) {
+                showStatus("Please specify a valid transfer amount before requesting OTP.", "error");
+                return;
+            }
+
+            showStatus("Requesting secure OTP for transfer...", "info");
+
+            try {
+                const res = await fetch("/request-otp", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ accountNumber }),
+                });
+                const data = await res.json();
+                showStatus(data.message || "OTP generated and sent.", data.success ? "success" : "error");
+                if (data.success) {
+                    showOnly("otp-section");
+                }
+            } catch (err) {
+                showStatus("Failed to request OTP. Please try again.", "error");
+            }
+        }
+
+        async function sendMoney() {
+            const recipientAccount = document.getElementById("recipientAccount").value.trim();
+            const amount = document.getElementById("amount").value;
+            const otp = document.getElementById("otp").value.trim();
+
+            if (!amount || parseFloat(amount) <= 0) {
+                showStatus("Please enter a valid amount.", "error");
+                return;
+            }
+            if (!otp) {
+                showStatus("Please enter the authorization OTP.", "error");
+                return;
+            }
+
+            showStatus("Processing secure inter-account fund transfer...", "info");
+
+            try {
+                const res = await fetch("/send-money", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ accountNumber, recipientAccount, amount: parseFloat(amount), otp }),
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showStatus("Transfer Successful! ₹" + parseFloat(amount).toLocaleString("en-IN") + " sent to " + document.getElementById("recipient-name").textContent, "success");
+                    // Refresh balance from server
+                    try {
+                        const balRes = await fetch(`/check-balance`, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ accountNumber, password: localStorage.getItem("PASSWORD") })
+                        });
+                        const balData = await balRes.json();
+                        if (balData.success) {
+                            localStorage.setItem("balance", balData.balance);
+                            updateBalanceUI(balData.balance);
+                        }
+                    } catch (e) {}
+                    document.getElementById("otp").value = "";
+                } else {
+                    showStatus(data.message || "Transfer failed. Please check balance or OTP.", "error");
+                }
+            } catch (err) {
+                showStatus("Error processing transfer. Please try again.", "error");
+            }
+        }
+
+        showOnly("stage1");
+    </script>
+</body>
+</html>

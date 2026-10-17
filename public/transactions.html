@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History - Infinity Bank</title>
+    <link rel="stylesheet" href="styles_bank.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .statement-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--fillet);
+            background: #FFFFFF;
+        }
+        .statement-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+        .statement-table th {
+            background: var(--bg-subtle);
+            color: var(--c-darkred);
+            font-weight: 700;
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 2px solid var(--border-subtle);
+            letter-spacing: 0.02em;
+        }
+        .statement-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-primary);
+        }
+        .statement-table tr:hover {
+            background-color: rgba(237, 217, 204, 0.2);
+        }
+        .statement-table .credit {
+            color: #15803d;
+            font-weight: 600;
+        }
+        .statement-table .debit {
+            color: var(--c-red);
+            font-weight: 600;
+        }
+        .statement-table .balance {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bank App Header -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="code4.html" class="bank-brand">
+                <img src="logo.jpg" alt="Infinity Bank Logo">
+                <div>
+                    <div class="bank-brand-title">Infinity Bank</div>
+                    <div class="bank-brand-sub">Secure Digital Banking Portal</div>
+                </div>
+            </a>
+            <div class="bank-header-right">
+                <div class="user-badge">
+                    <div class="user-badge-icon"><i class="fa-solid fa-user"></i></div>
+                    <span id="userNameDisplay">Account Holder</span>
+                </div>
+                <a href="code4.html" class="btn-nav-dashboard">
+                    <i class="fa-solid fa-arrow-left"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bank-shell">
+        <!-- Hero Breadcrumbs & Live Balance Strip -->
+        <div class="bank-page-hero">
+            <div class="hero-left">
+                <div class="hero-icon" style="color: var(--c-darkred);"><i class="fa-solid fa-book-open"></i></div>
+                <div>
+                    <div class="hero-breadcrumbs">
+                        <a href="code4.html">Dashboard</a> / Banking Services / Statement
+                    </div>
+                    <h1 class="hero-title">Account Transaction History</h1>
+                    <p class="hero-desc">Detailed ledger record of all credits, debits, online transfers, and utility payments.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="hero-balance-label">Current Ledger Balance</span>
+                <span class="hero-balance-val" id="liveBalanceDisplay">₹0.00</span>
+                <span class="hero-balance-status"><i class="fa-solid fa-circle-check"></i> Reconciled Ledger</span>
+            </div>
+        </div>
+
+        <!-- 2-Column Filled Real Bank Grid -->
+        <div class="bank-grid-layout" style="grid-template-columns: 2fr 1fr;">
+            <!-- Left: Transaction History Table -->
+            <div class="bank-main-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <h2 class="card-heading" style="margin: 0;">
+                            <i class="fa-solid fa-clock-rotate-left" style="color: var(--c-darkred);"></i>
+                            E-Statement Ledger
+                        </h2>
+                        <span style="font-size: 0.84rem; color: var(--text-muted);">Showing recent chronological account entries</span>
+                    </div>
+                    <button type="button" class="bank-btn-secondary" onclick="window.print()" style="padding: 7px 14px; font-size: 0.82rem;">
+                        <i class="fa-solid fa-print"></i> Print Statement
+                    </button>
+                </div>
+
+                <div class="statement-table-wrap">
+                    <table class="statement-table">
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Transaction Description</th>
+                                <th>Closing Balance (₹)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transaction-list">
+                            <tr>
+                                <td colspan="3" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                                    <i class="fa-solid fa-spinner fa-spin"></i> Loading account records...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="message" style="margin-top: 14px; font-size: 0.88rem; color: var(--text-muted); text-align: center;"></div>
+            </div>
+
+            <!-- Right: Real Bank Context Sidebars -->
+            <aside class="bank-sidebar">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-file-invoice"></i> Statement Details</h3>
+                    <ul class="account-kv-list">
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Account No</span>
+                            <span class="account-kv-val" id="accNumberSnapshot">•••• •••• •••• ----</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Account Type</span>
+                            <span class="account-kv-val">Digital Savings</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Statement Period</span>
+                            <span class="account-kv-val">Current Financial Year</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Bank Branch</span>
+                            <span class="account-kv-val">Infinity Digital Hub</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-circle-info"></i> Transaction Notice</h3>
+                    <div class="security-features">
+                        <div class="sec-item">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <div><strong>Disputed Charge:</strong> Report unauthorized charges immediately to customer care within 24 hours.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-compass"></i> Banking Shortcuts</h3>
+                    <div class="quick-nav-grid">
+                        <a href="deposit.html" class="quick-nav-btn"><i class="fa-solid fa-money-bill-wave"></i> Deposit</a>
+                        <a href="withdraw.html" class="quick-nav-btn"><i class="fa-solid fa-money-bill-transfer"></i> Withdraw</a>
+                        <a href="send-money.html" class="quick-nav-btn"><i class="fa-solid fa-paper-plane"></i> Send Money</a>
+                        <a href="bill-Pay.html" class="quick-nav-btn"><i class="fa-solid fa-file-invoice"></i> Bill Pay</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <p>&copy; 2025 Infinity Bank. All rights reserved. Registered Digital Banking Institution.</p>
+            <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms & Conditions</a></p>
+        </footer>
+    </div>
+
+    <script>
+        const accountNumber = localStorage.getItem("accountNumber");
+        const storedName = localStorage.getItem("name");
+        let storedBalance = localStorage.getItem("balance") || "0";
+
+        if (!accountNumber) {
+            alert("Error: Account number not found. Redirecting to login.");
+            window.location.href = "login.html";
+        }
+
+        if (storedName) {
+            document.getElementById("userNameDisplay").textContent = storedName;
+        }
+        if (accountNumber) {
+            document.getElementById("accNumberSnapshot").textContent = "•••• " + accountNumber.slice(-4);
+        }
+
+        function updateBalanceUI(bal) {
+            document.getElementById("liveBalanceDisplay").textContent = 
+                "₹" + Number(bal).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        updateBalanceUI(storedBalance);
+
+        async function loadTransactions() {
+            try {
+                let transactions = [];
+                let balance = storedBalance || 0;
+
+                try {
+                    const { default: supabase } = await import('./js/supabaseClient.js');
+                    const { data, error } = await supabase
+                        .from('users')
+                        .select('balance, transactions, name')
+                        .eq('account_number', accountNumber)
+                        .single();
+
+                    if (data && !error) {
+                        transactions = data.transactions || [];
+                        balance = data.balance !== undefined ? data.balance : balance;
+                        if (data.name) {
+                            localStorage.setItem("name", data.name);
+                            document.getElementById("userNameDisplay").textContent = data.name;
+                        }
+                        localStorage.setItem("balance", balance);
+                        localStorage.setItem("transactions", JSON.stringify(transactions));
+                        updateBalanceUI(balance);
+                    } else {
+                        // Fallback to local storage
+                        const cached = localStorage.getItem("transactions");
+                        if (cached) transactions = JSON.parse(cached);
+                    }
+                } catch (sbErr) {
+                    console.warn("Supabase load failed, falling back to cached transactions:", sbErr);
+                    const cached = localStorage.getItem("transactions");
+                    if (cached) transactions = JSON.parse(cached);
+                }
+
+                const transactionList = document.getElementById("transaction-list");
+                transactionList.innerHTML = "";
+
+                if (!transactions || transactions.length === 0) {
+                    transactionList.innerHTML = `<tr><td colspan="3" style="text-align: center; color: var(--text-muted); padding: 24px;">No transaction records found for this account.</td></tr>`;
+                    return;
+                }
+
+                let runningBal = 0;
+                const transactionsWithBalance = [];
+
+                transactions.forEach(transaction => {
+                    const [dateTime, message] = transaction.split(" - ");
+                    let amount = 0;
+                    let isCredit = false;
+
+                    const match = message ? message.match(/₹(\d+)/) : null;
+                    if (match) {
+                        amount = parseInt(match[1]);
+                    }
+
+                    if (message && message.toLowerCase().includes("deposit")) {
+                        runningBal += amount;
+                        isCredit = true;
+                    } else if (message && (
+                        message.toLowerCase().includes("withdrew") ||
+                        message.toLowerCase().includes("paid") ||
+                        message.toLowerCase().includes("recharge") || 
+                        message.toLowerCase().includes("sent")
+                    )) {
+                        runningBal -= amount;
+                    }
+
+                    transactionsWithBalance.push({
+                        dateTime: dateTime || "N/A",
+                        message: message || "Transaction Record",
+                        isCredit,
+                        balance: runningBal
+                    });
+                });
+
+                // Show in reverse chronological order
+                transactionsWithBalance.reverse().forEach(tx => {
+                    const row = document.createElement("tr");
+
+                    const dateCell = document.createElement("td");
+                    dateCell.textContent = tx.dateTime;
+
+                    const messageCell = document.createElement("td");
+                    messageCell.textContent = tx.message;
+                    messageCell.className = tx.isCredit ? "credit" : "debit";
+
+                    const balanceCell = document.createElement("td");
+                    balanceCell.textContent = "₹" + Number(tx.balance).toLocaleString("en-IN");
+                    balanceCell.className = "balance";
+
+                    row.appendChild(dateCell);
+                    row.appendChild(messageCell);
+                    row.appendChild(balanceCell);
+
+                    transactionList.appendChild(row);
+                });
+
+            } catch (error) {
+                console.error("Error displaying transactions:", error);
+                document.getElementById("message").textContent = "Failed to load transaction history.";
+            }
+        }
+
+        window.onload = loadTransactions;
+    </script>
+</body>
+</html>

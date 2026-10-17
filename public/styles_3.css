@@ -1,0 +1,375 @@
+/* ==========================================================================
+   INFINITY BANK - ACCOUNT OPENING PORTAL (styles_3.css)
+   Color Palette: Crown Bank Dark Navy + Gold
+   ========================================================================== */
+
+:root {
+    --c-navy:      #1E2D4A;
+    --c-navy-mid:  #2A3F6B;
+    --c-gold:      #F5A623;
+    --c-gold-dark: #D4891A;
+    --c-success:   #27AE60;
+    --c-danger:    #E74C3C;
+
+    /* Legacy compatibility aliases */
+    --c-darkred:   var(--c-navy);
+    --c-red:       var(--c-navy-mid);
+    --c-champagne: #EEF1F6;
+    --c-khaki:     var(--c-gold);
+    --c-coyote:    #4A5568;
+
+    --bg-page:    #F4F6F9;
+    --bg-card:    #FFFFFF;
+    --bg-subtle:  #EEF1F6;
+
+    --text-primary:   #1A202C;
+    --text-secondary: #4A5568;
+    --text-muted:     #718096;
+
+    --border-subtle: #E2E8F0;
+    --fillet: 6px;
+    --fillet-sm: 4px;
+
+    --shadow-card: 0 4px 24px rgba(30, 45, 74, 0.10);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOP HEADER ── */
+.reg-top-bar {
+    background: var(--c-navy);
+    border-bottom: 3px solid var(--c-gold);
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(30,45,74,0.3);
+}
+
+.reg-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.reg-brand img {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--fillet-sm);
+    border: 2px solid rgba(245,166,35,0.5);
+    object-fit: cover;
+}
+
+.reg-brand-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--c-gold);
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.reg-brand-sub {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+}
+
+.reg-top-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.reg-security-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--c-success);
+    background: rgba(39,174,96,0.12);
+    border: 1px solid rgba(39,174,96,0.3);
+    padding: 6px 12px;
+    border-radius: var(--fillet);
+}
+
+.reg-login-link {
+    text-decoration: none;
+    background: var(--c-gold);
+    color: var(--c-navy);
+    border: none;
+    padding: 8px 18px;
+    border-radius: var(--fillet);
+    font-size: 0.88rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.reg-login-link:hover {
+    background: var(--c-gold-dark);
+    box-shadow: 0 4px 14px rgba(245,166,35,0.35);
+}
+
+/* ── MAIN WRAPPER ── */
+.reg-container {
+    max-width: 1180px;
+    width: 100%;
+    margin: 32px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 28px;
+    align-items: start;
+}
+
+/* ── FORM CARD (LEFT) ── */
+.reg-form-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--fillet);
+    box-shadow: var(--shadow-card);
+    padding: 32px;
+    border-top: 4px solid var(--c-navy);
+}
+
+.reg-header-strip {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.reg-header-strip h1 {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--c-navy);
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+}
+
+.reg-header-strip p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* ── SECTION DIVIDERS ── */
+.form-section-title {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--c-navy);
+    margin: 22px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-section-title::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: var(--bg-subtle);
+    border-radius: 2px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.row.single   { grid-template-columns: 1fr; }
+.row.otp-row  { grid-template-columns: 1fr auto; align-items: end; }
+
+.field-group { display: flex; flex-direction: column; gap: 5px; }
+
+.field-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+input {
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 0.92rem;
+    border-radius: var(--fillet);
+    border: 1.5px solid var(--border-subtle);
+    background-color: #FFFFFF;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+input:focus {
+    border-color: var(--c-navy);
+    box-shadow: 0 0 0 3px rgba(30,45,74,0.12);
+}
+
+/* ── BUTTONS ── */
+button, .btn {
+    padding: 11px 18px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    border-radius: var(--fillet);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: inherit;
+}
+
+button[type="button"]:not(.btn) {
+    background-color: var(--bg-subtle);
+    color: var(--c-navy);
+    border: 1.5px solid var(--border-subtle);
+    white-space: nowrap;
+    height: 43px;
+}
+
+button[type="button"]:not(.btn):hover {
+    background-color: var(--c-navy);
+    color: var(--c-gold);
+    border-color: var(--c-navy);
+}
+
+.btn {
+    background: var(--c-navy);
+    color: #FFFFFF;
+    width: 100%;
+    font-size: 1rem;
+    padding: 14px;
+    margin-top: 16px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 10px rgba(30,45,74,0.25);
+}
+
+.btn:hover {
+    background: var(--c-navy-mid, #2A3F6B);
+    box-shadow: 0 6px 20px rgba(30,45,74,0.35);
+    transform: translateY(-1px);
+}
+
+/* ── FEEDBACK MESSAGES ── */
+#emailStatus, #message {
+    font-size: 0.86rem;
+    margin-top: 6px;
+    font-weight: 600;
+}
+
+#accountNumberDisplay, #cardNumberDisplay {
+    font-size: 0.95rem;
+    margin-top: 6px;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    color: var(--c-navy);
+}
+
+/* ── SIDEBAR CARD (RIGHT) ── */
+.reg-side-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.side-feature-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--fillet);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    border-top: 3px solid var(--c-gold);
+}
+
+.side-feature-box h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--c-navy);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.benefit-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
+.benefit-icon { font-size: 1.1rem; line-height: 1; flex-shrink: 0; }
+
+.trust-badge-box {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--fillet);
+    padding: 16px;
+    text-align: center;
+}
+
+.trust-badge-box .stat-num {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--c-navy);
+}
+
+.trust-badge-box .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* ── FOOTER ── */
+.reg-footer {
+    border-top: 1px solid var(--border-subtle);
+    padding: 20px 28px;
+    background: var(--c-navy);
+    text-align: center;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 40px;
+}
+
+.reg-footer a {
+    color: var(--c-gold);
+    text-decoration: none;
+    margin: 0 6px;
+    font-weight: 500;
+}
+
+.reg-footer a:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+    .reg-container { grid-template-columns: 1fr; }
+    .row { grid-template-columns: 1fr; }
+}

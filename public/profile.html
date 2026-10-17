@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Profile - Infinity Bank</title>
+    <link rel="stylesheet" href="styles_bank.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .profile-hero {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px 0 28px;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 24px;
+        }
+        .profile-avatar-large {
+            width: 84px;
+            height: 84px;
+            border-radius: var(--fillet);
+            border: 2px solid var(--border-subtle);
+            object-fit: cover;
+            background: var(--bg-subtle);
+        }
+        .profile-title-group h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .kyc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: rgba(21, 128, 61, 0.1);
+            color: #15803d;
+            border: 1px solid rgba(21, 128, 61, 0.3);
+            border-radius: var(--fillet-sm);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .info-card-item {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-subtle);
+            padding: 16px;
+            border-radius: var(--fillet);
+        }
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .info-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bank App Header -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="code4.html" class="bank-brand">
+                <img src="logo.jpg" alt="Infinity Bank Logo">
+                <div>
+                    <div class="bank-brand-title">Infinity Bank</div>
+                    <div class="bank-brand-sub">Customer Identity & Profile Hub</div>
+                </div>
+            </a>
+            <div class="bank-header-right">
+                <a href="code4.html" class="btn-nav-dashboard">
+                    <i class="fa-solid fa-arrow-left"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bank-shell">
+        <div class="bank-page-hero">
+            <div class="hero-left">
+                <div class="hero-icon" style="color: var(--c-darkred);"><i class="fa-solid fa-address-card"></i></div>
+                <div>
+                    <div class="hero-breadcrumbs">
+                        <a href="code4.html">Dashboard</a> / My Profile & Settings
+                    </div>
+                    <h1 class="hero-title">Account Holder Profile</h1>
+                    <p class="hero-desc">Verified KYC credentials, contact information, and bank customer master records.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="hero-balance-label">Current Ledger Balance</span>
+                <span class="hero-balance-val">₹<span id="balance">0.00</span></span>
+                <span class="hero-balance-status"><i class="fa-solid fa-circle-check"></i> Tier 1 Verified</span>
+            </div>
+        </div>
+
+        <div class="bank-grid-layout">
+            <div class="bank-main-card">
+                <div class="profile-hero">
+                    <img src="avatar.webp" alt="Profile" class="profile-avatar-large" id="avatar" onerror="this.src='logo.jpg'">
+                    <div class="profile-title-group">
+                        <h2 id="name">Loading customer records...</h2>
+                        <span class="kyc-badge"><i class="fa-solid fa-shield-check"></i> Government Aadhaar & KYC Verified</span>
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card-item">
+                        <div class="info-label">Account Number</div>
+                        <div class="info-value" id="account" style="color: var(--c-darkred);">Loading...</div>
+                    </div>
+                    <div class="info-card-item">
+                        <div class="info-label">Aadhaar National ID</div>
+                        <div class="info-value" id="aadhaar">•••• •••• ••••</div>
+                    </div>
+                    <div class="info-card-item">
+                        <div class="info-label">Email Address</div>
+                        <div class="info-value" id="email" style="font-size: 0.9rem;">--</div>
+                    </div>
+                    <div class="info-card-item">
+                        <div class="info-label">Mobile Number</div>
+                        <div class="info-value" id="phone">--</div>
+                    </div>
+                    <div class="info-card-item">
+                        <div class="info-label">Date of Birth</div>
+                        <div class="info-value" id="dob">--</div>
+                    </div>
+                    <div class="info-card-item">
+                        <div class="info-label">Registered Residential Address</div>
+                        <div class="info-value" id="address" style="font-size: 0.9rem;">--</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap;">
+                    <a href="code4.html" class="bank-btn-primary">
+                        <i class="fa-solid fa-house"></i> Go to Dashboard
+                    </a>
+                    <button type="button" class="bank-btn-secondary" onclick="logout()" style="border-color: var(--c-red); color: var(--c-red);">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+                    </button>
+                </div>
+            </div>
+
+            <aside class="bank-sidebar">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-user-shield"></i> Security Status</h3>
+                    <ul class="account-kv-list">
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Biometric 2FA</span>
+                            <span class="account-kv-val" style="color: #15803d;">Enabled</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Email OTP</span>
+                            <span class="account-kv-val" style="color: #15803d;">Active</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Branch Code</span>
+                            <span class="account-kv-val">INFT-010</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">CIF ID</span>
+                            <span class="account-kv-val">INF9928172</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-compass"></i> Banking Shortcuts</h3>
+                    <div class="quick-nav-grid">
+                        <a href="deposit.html" class="quick-nav-btn"><i class="fa-solid fa-money-bill-wave"></i> Deposit</a>
+                        <a href="withdraw.html" class="quick-nav-btn"><i class="fa-solid fa-money-bill-transfer"></i> Withdraw</a>
+                        <a href="send-money.html" class="quick-nav-btn"><i class="fa-solid fa-paper-plane"></i> Send Money</a>
+                        <a href="transactions.html" class="quick-nav-btn"><i class="fa-solid fa-receipt"></i> Statement</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <p>&copy; 2025 Infinity Bank. All rights reserved. Registered Digital Banking Institution.</p>
+            <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms & Conditions</a></p>
+        </footer>
+    </div>
+
+    <script type="module">
+        const accountNumber = localStorage.getItem("accountNumber");
+
+        if (!accountNumber) {
+            alert("Please login first.");
+            window.location.href = "login.html";
+        }
+
+        async function fetchUserDetails() {
+            try {
+                const { default: supabase } = await import('./js/supabaseClient.js');
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('name, account_number, aadhaar, dob, email, phone, address, balance')
+                    .eq('account_number', accountNumber)
+                    .single();
+
+                if (data && !error) {
+                    document.getElementById("name").textContent = data.name || "N/A";
+                    document.getElementById("account").textContent = data.account_number || accountNumber;
+                    document.getElementById("aadhaar").textContent = data.aadhaar ? "•••• •••• " + data.aadhaar.slice(-4) : "•••• •••• ••••";
+                    document.getElementById("dob").textContent = data.dob || "N/A";
+                    document.getElementById("email").textContent = data.email || "N/A";
+                    document.getElementById("phone").textContent = data.phone || "N/A";
+                    document.getElementById("address").textContent = data.address || "N/A";
+                    document.getElementById("balance").textContent = Number(data.balance || 0).toLocaleString("en-IN", { minimumFractionDigits: 2 });
+                    
+                    localStorage.setItem("name", data.name);
+                    localStorage.setItem("balance", data.balance);
+                } else {
+                    // Fallback to cache
+                    const name = localStorage.getItem("name");
+                    const balance = localStorage.getItem("balance");
+                    if (name) document.getElementById("name").textContent = name;
+                    if (balance) document.getElementById("balance").textContent = Number(balance).toLocaleString("en-IN", { minimumFractionDigits: 2 });
+                    document.getElementById("account").textContent = accountNumber;
+                }
+            } catch (error) {
+                console.error("Error fetching user details via Supabase:", error);
+            }
+        }
+
+        window.logout = function() {
+            localStorage.clear();
+            window.location.href = "index.html";
+        };
+
+        fetchUserDetails();
+    </script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Services & EMI Calculator - Infinity Bank</title>
+    <link rel="stylesheet" href="../styles_bank.css">
+    <style>
+        .loan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .loan-card-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--fillet);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+        .loan-card-item:hover {
+            border-color: var(--c-navy);
+            box-shadow: var(--shadow-card);
+            transform: translateY(-2px);
+        }
+        .loan-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: var(--fillet);
+            background: rgba(30, 45, 74, 0.08);
+            color: var(--c-navy);
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        .loan-rate {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--c-navy);
+            margin: 6px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BANK HEADER -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="../code4.html" class="bank-brand">
+                <img src="../logo.jpg" alt="Infinity Bank Logo">
+                <div class="bank-brand-text">
+                    <span class="bank-name">INFINITY BANK</span>
+                    <span class="bank-tagline">Retail & Corporate NetBanking</span>
+                </div>
+            </a>
+
+            <div class="bank-user-pill">
+                <div class="bank-user-avatar" id="navAvatar">U</div>
+                <div class="bank-user-info">
+                    <span class="user-greeting">Retail Lending Portal</span>
+                    <span class="user-acc" id="navAccNumber">A/C: Loading...</span>
+                </div>
+                <div class="bank-balance-badge">
+                    <span class="lbl">Pre-Approved Credit</span>
+                    <span class="val" style="color: var(--c-gold);">₹ 5,00,000</span>
+                </div>
+                <button class="bank-btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="bank-shell">
+        <nav class="bank-breadcrumbs">
+            <a href="../code4.html">Dashboard</a>
+            <span class="sep">/</span>
+            <span class="curr">Loan Products & EMI Calculator</span>
+        </nav>
+
+        <section class="bank-hero-strip">
+            <div class="hero-left">
+                <div class="hero-icon-box">💰</div>
+                <div>
+                    <h1 class="hero-title">Retail Loans & Financing</h1>
+                    <p class="hero-desc">Customized loan facilities with transparent interest rates, zero hidden fees, and rapid digital disbursement.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="lbl">Personal Credit Score</span>
+                <span class="val" style="color: #4ade80; font-size: 1.25rem; font-weight: 800;">782 (Excellent)</span>
+                <span class="sub">Bureau verified • Low risk tier</span>
+            </div>
+        </section>
+
+        <div class="bank-grid-layout">
+            <div class="bank-main-col">
+                <!-- LOAN PRODUCTS GRID -->
+                <div class="loan-grid">
+                    <div class="loan-card-item">
+                        <div>
+                            <span class="loan-badge">Most Popular</span>
+                            <h3 style="font-size: 1.1rem; color: var(--text-primary); font-weight: 700;">Home Loan</h3>
+                            <div class="loan-rate">6.75% <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">p.a. onwards</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Low EMIs with flexible repayment tenure up to 30 years. Zero prepayment penalty on floating rate loans.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="applyLoan('Home Loan')">Apply Online</button>
+                    </div>
+
+                    <div class="loan-card-item">
+                        <div>
+                            <span class="loan-badge">Instant In-Principle</span>
+                            <h3 style="font-size: 1.1rem; color: var(--text-primary); font-weight: 700;">Personal Loan</h3>
+                            <div class="loan-rate">10.25% <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">p.a. onwards</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Get up to ₹25 Lakhs with 100% paperless digital sanction and funds in your account within 10 minutes.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="applyLoan('Personal Loan')">Apply Online</button>
+                    </div>
+
+                    <div class="loan-card-item">
+                        <div>
+                            <span class="loan-badge">100% On-Road Funding</span>
+                            <h3 style="font-size: 1.1rem; color: var(--text-primary); font-weight: 700;">Car / Auto Loan</h3>
+                            <div class="loan-rate">7.90% <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">p.a. onwards</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Finance your new four-wheeler or EV with competitive rates and tenure options extending up to 84 months.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="applyLoan('Car Loan')">Apply Online</button>
+                    </div>
+
+                    <div class="loan-card-item">
+                        <div>
+                            <span class="loan-badge">Tax Benefit Under 80E</span>
+                            <h3 style="font-size: 1.1rem; color: var(--text-primary); font-weight: 700;">Education Loan</h3>
+                            <div class="loan-rate">8.40% <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">p.a. onwards</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Comprehensive coverage for domestic and premier international universities including living expenses.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="applyLoan('Education Loan')">Apply Online</button>
+                    </div>
+                </div>
+
+                <!-- EMI CALCULATOR CARD -->
+                <div class="bank-card">
+                    <div class="bank-card-header">
+                        <div>
+                            <h2 class="bank-card-title">Interactive EMI Calculator</h2>
+                            <p class="bank-card-subtitle">Calculate your expected monthly installment, interest liability, and loan amortisation.</p>
+                        </div>
+                        <span class="bank-badge-secure">Accurate Amortisation</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 16px;">
+                        <div class="bank-form-group">
+                            <label class="bank-label" for="loan-amount">Loan Amount (₹)</label>
+                            <input type="number" class="bank-input" id="loan-amount" placeholder="e.g. 500000" value="500000">
+                        </div>
+
+                        <div class="bank-form-group">
+                            <label class="bank-label" for="interest-rate">Interest Rate (% p.a.)</label>
+                            <input type="number" class="bank-input" id="interest-rate" placeholder="e.g. 8.5" step="0.1" value="8.5">
+                        </div>
+
+                        <div class="bank-form-group">
+                            <label class="bank-label" for="tenure">Loan Tenure (Years)</label>
+                            <input type="number" class="bank-input" id="tenure" placeholder="e.g. 5" value="5">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 16px; display: flex; gap: 12px; align-items: center;">
+                        <button type="button" class="bank-btn-primary" onclick="calculateEMI()">Calculate EMI</button>
+                        <button type="button" class="bank-btn-secondary" onclick="presetValues(1000000, 7.5, 15)">Home Loan 15Y Preset</button>
+                    </div>
+
+                    <div id="emi-result" style="margin-top: 18px; padding: 14px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle); font-size: 1rem; font-weight: 700; color: var(--c-darkred);">
+                        Click 'Calculate EMI' to compute your monthly installment.
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <a href="../code4.html" class="bank-btn-secondary" style="text-decoration: none;">← Return to NetBanking Dashboard</a>
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="bank-sidebar-col">
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Loan Eligibility Criteria</h3>
+                    <ul class="sidebar-checklist">
+                        <li>
+                            <span class="chk">✓</span>
+                            <span>Age between 21 and 65 years.</span>
+                        </li>
+                        <li>
+                            <span class="chk">✓</span>
+                            <span>Minimum monthly net salary ₹25,000 (Salaried) or 2 years ITR (Self-Employed).</span>
+                        </li>
+                        <li>
+                            <span class="chk">✓</span>
+                            <span>CIBIL Score of 700 or above for preferential pricing.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Documents Required</h3>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                        <p>📄 PAN & Aadhaar Card</p>
+                        <p>🏦 Last 6 Months Bank Statement</p>
+                        <p>💼 Last 3 Months Salary Slips / Form 16</p>
+                    </div>
+                </div>
+
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Loan Support Desk</h3>
+                    <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 8px;">
+                        Need custom loan advisory or doorstep document collection?
+                    </p>
+                    <div style="font-size: 1.05rem; font-weight: 800; color: var(--c-darkred);">
+                        📞 1800-888-9999
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <div>&copy; 2025 Infinity Bank Ltd. All Rights Reserved. Regulated by RBI.</div>
+            <div>
+                <a href="../privacy-policy.html">Privacy Policy</a> | 
+                <a href="../terms-conditions.html">Terms & Conditions</a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const accountNumber = localStorage.getItem("accountNumber");
+        if (accountNumber) {
+            const masked = accountNumber.length > 4 ? "•••• " + accountNumber.slice(-4) : accountNumber;
+            document.getElementById("navAccNumber").textContent = `A/C: ${masked}`;
+            const userName = localStorage.getItem("name");
+            if (userName) document.getElementById("navAvatar").textContent = userName.charAt(0).toUpperCase();
+        }
+
+        function calculateEMI() {
+            let amount = parseFloat(document.getElementById('loan-amount').value);
+            let annualRate = parseFloat(document.getElementById('interest-rate').value);
+            let tenureYears = parseFloat(document.getElementById('tenure').value);
+
+            if (isNaN(amount) || isNaN(annualRate) || isNaN(tenureYears) || amount <= 0 || annualRate <= 0 || tenureYears <= 0) {
+                document.getElementById('emi-result').textContent = "Please enter valid positive values for all fields.";
+                return;
+            }
+
+            let r = annualRate / 1200;
+            let n = tenureYears * 12;
+            let emi = (amount * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+            let totalPayment = emi * n;
+            let totalInterest = totalPayment - amount;
+
+            document.getElementById('emi-result').innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: gap: 8px;">
+                    <div>Estimated Monthly EMI: <span style="font-size: 1.25rem; color: var(--c-darkred);">₹ ${emi.toLocaleString('en-IN', {maximumFractionDigits: 0})}</span> / month</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: normal;">Total Interest: ₹ ${totalInterest.toLocaleString('en-IN', {maximumFractionDigits: 0})} | Total Payable: ₹ ${totalPayment.toLocaleString('en-IN', {maximumFractionDigits: 0})}</div>
+                </div>
+            `;
+        }
+
+        function presetValues(amt, rate, ten) {
+            document.getElementById('loan-amount').value = amt;
+            document.getElementById('interest-rate').value = rate;
+            document.getElementById('tenure').value = ten;
+            calculateEMI();
+        }
+
+        function applyLoan(loanType) {
+            alert(`Application initiated for Infinity Bank ${loanType}. Our dedicated credit specialist will contact you shortly.`);
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = "../login.html";
+        }
+
+        // Run initial calculation
+        calculateEMI();
+    </script>
+</body>
+</html>

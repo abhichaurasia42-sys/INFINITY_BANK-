@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Portfolio - Infinity Bank</title>
+    <link rel="stylesheet" href="../styles_bank.css">
+</head>
+<body>
+
+    <!-- TOP BANK HEADER -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="../code4.html" class="bank-brand">
+                <img src="../logo.jpg" alt="Infinity Bank Logo">
+                <div class="bank-brand-text">
+                    <span class="bank-name">INFINITY BANK</span>
+                    <span class="bank-tagline">Retail & Corporate NetBanking</span>
+                </div>
+            </a>
+
+            <div class="bank-user-pill">
+                <div class="bank-user-avatar" id="navAvatar">U</div>
+                <div class="bank-user-info">
+                    <span class="user-greeting">Authenticated Customer</span>
+                    <span class="user-acc" id="navAccNumber">A/C: Loading...</span>
+                </div>
+                <div class="bank-balance-badge">
+                    <span class="lbl">Available Balance</span>
+                    <span class="val" id="navLiveBalance">₹ --</span>
+                </div>
+                <button class="bank-btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="bank-shell">
+        <nav class="bank-breadcrumbs">
+            <a href="../code4.html">Dashboard</a>
+            <span class="sep">/</span>
+            <span class="curr">Account Portfolio & Limits</span>
+        </nav>
+
+        <section class="bank-hero-strip">
+            <div class="hero-left">
+                <div class="hero-icon-box">🏦</div>
+                <div>
+                    <h1 class="hero-title">Account Portfolio</h1>
+                    <p class="hero-desc">Monitor your linked savings accounts, current facilities, overdraft limits, and deposit balances in real-time.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="lbl">Total Liquid Funds</span>
+                <span class="val" id="heroBalance">₹ --</span>
+                <span class="sub" id="heroAccNumber">A/C: Loading...</span>
+            </div>
+        </section>
+
+        <div class="bank-grid-layout">
+            <div class="bank-main-col">
+                <!-- SAVINGS ACCOUNT CARD -->
+                <div class="bank-card">
+                    <div class="bank-card-header">
+                        <div>
+                            <h2 class="bank-card-title">Primary Savings Account</h2>
+                            <p class="bank-card-subtitle">Retail High-Yield Digital Savings • Zero Balance Facility</p>
+                        </div>
+                        <span class="bank-badge-secure" style="color: #15803d; border-color: #86efac; background: #f0fdf4;">● Active</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 16px;">
+                        <div style="padding: 12px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Account Number</span>
+                            <div style="font-size: 1rem; font-weight: 700; color: var(--c-darkred); font-family: monospace;" id="dispAccNumber">Loading...</div>
+                        </div>
+
+                        <div style="padding: 12px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Available Balance</span>
+                            <div style="font-size: 1.15rem; font-weight: 800; color: var(--c-darkred);" id="dispBalance">₹ 0.00</div>
+                        </div>
+
+                        <div style="padding: 12px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Interest Rate</span>
+                            <div style="font-size: 1rem; font-weight: 700; color: #15803d;">7.10% p.a.</div>
+                        </div>
+
+                        <div style="padding: 12px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Nominee Registered</span>
+                            <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Yes (Updated)</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
+                        <a href="../deposit.html" class="bank-btn-primary" style="text-decoration: none; font-size: 0.88rem;">+ Deposit Funds</a>
+                        <a href="../send-money.html" class="bank-btn-secondary" style="text-decoration: none; font-size: 0.88rem;">Transfer Money</a>
+                        <a href="../transactions.html" class="bank-btn-secondary" style="text-decoration: none; font-size: 0.88rem;">Download Statement</a>
+                    </div>
+                </div>
+
+                <!-- SECONDARY CURRENT ACCOUNT FACILITY -->
+                <div class="bank-card" style="margin-top: 24px;">
+                    <div class="bank-card-header">
+                        <div>
+                            <h2 class="bank-card-title">Commercial Overdraft & Current Facility</h2>
+                            <p class="bank-card-subtitle">Trade & Enterprise Settlement Account</p>
+                        </div>
+                        <span style="font-size: 0.75rem; background: var(--bg-subtle); padding: 4px 8px; border-radius: var(--fillet); font-weight: 600; color: var(--text-secondary);">Pre-Approved</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 16px;">
+                        <div style="padding: 12px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Overdraft Limit</span>
+                            <div style="font-size: 1rem; font-weight: 700; color: var(--c-darkred);">₹2,00,000.00</div>
+                        </div>
+
+                        <div style="padding: 12px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Daily Transfer Limit</span>
+                            <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">₹10,00,000 / day</div>
+                        </div>
+
+                        <div style="padding: 12px; background: var(--bg-subtle); border-radius: var(--fillet); border: 1px solid var(--border-subtle);">
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Cheque Book Privileges</span>
+                            <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">100 Leaves Free / yr</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <a href="../code4.html" class="bank-btn-secondary" style="text-decoration: none;">← Return to NetBanking Dashboard</a>
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="bank-sidebar-col">
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Branch & IFSC Information</h3>
+                    <div class="sidebar-info-row">
+                        <span class="label">Branch Name</span>
+                        <span class="value">CP Central, New Delhi</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">IFSC Code</span>
+                        <span class="value" style="font-family: monospace;">INFT0001092</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">MICR Code</span>
+                        <span class="value" style="font-family: monospace;">110024098</span>
+                    </div>
+                    <div class="sidebar-info-row">
+                        <span class="label">KYC Status</span>
+                        <span class="value" style="color: #15803d;">● Fully Verified</span>
+                    </div>
+                </div>
+
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Deposit Insurance</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                        Deposits held in Infinity Bank accounts are guaranteed and insured up to <strong>₹5,00,000</strong> per individual depositor under DICGC regulations.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <div>&copy; 2025 Infinity Bank Ltd. All Rights Reserved. Regulated by RBI.</div>
+            <div>
+                <a href="../privacy-policy.html">Privacy Policy</a> | 
+                <a href="../terms-conditions.html">Terms & Conditions</a>
+            </div>
+        </footer>
+    </main>
+
+    <script type="module">
+        const accountNumber = localStorage.getItem("accountNumber");
+        if (!accountNumber) {
+            alert("No active session found. Please log in.");
+            window.location.href = "../login.html";
+        } else {
+            const masked = accountNumber.length > 4 ? "•••• " + accountNumber.slice(-4) : accountNumber;
+            document.getElementById("navAccNumber").textContent = `A/C: ${masked}`;
+            document.getElementById("heroAccNumber").textContent = `A/C: ${accountNumber}`;
+            document.getElementById("dispAccNumber").textContent = accountNumber;
+
+            try {
+                const { default: supabase } = await import('../js/supabaseClient.js');
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('name, balance')
+                    .eq('account_number', accountNumber)
+                    .single();
+
+                if (data && !error) {
+                    if (data.name) document.getElementById("navAvatar").textContent = data.name.charAt(0).toUpperCase();
+                    const fmt = Number(data.balance || 0).toLocaleString("en-IN", { minimumFractionDigits: 2 });
+                    document.getElementById("navLiveBalance").textContent = `₹ ${fmt}`;
+                    document.getElementById("heroBalance").textContent = `₹ ${fmt}`;
+                    document.getElementById("dispBalance").textContent = `₹ ${fmt}`;
+                } else {
+                    // Fallback to localStorage if any
+                    const cachedBalance = localStorage.getItem("balance");
+                    const cachedName = localStorage.getItem("name");
+                    if (cachedName) document.getElementById("navAvatar").textContent = cachedName.charAt(0).toUpperCase();
+                    if (cachedBalance !== null) {
+                        const fmt = Number(cachedBalance).toLocaleString("en-IN", { minimumFractionDigits: 2 });
+                        document.getElementById("navLiveBalance").textContent = `₹ ${fmt}`;
+                        document.getElementById("heroBalance").textContent = `₹ ${fmt}`;
+                        document.getElementById("dispBalance").textContent = `₹ ${fmt}`;
+                    }
+                }
+            } catch (err) {
+                console.error("Supabase load error:", err);
+            }
+        }
+
+        window.logout = function() {
+            localStorage.clear();
+            window.location.href = "../login.html";
+        };
+    </script>
+</body>
+</html>

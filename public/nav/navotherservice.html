@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Banking Services - Infinity Bank</title>
+    <link rel="stylesheet" href="../styles_bank.css">
+</head>
+<body>
+
+    <!-- TOP BANK HEADER -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="../code4.html" class="bank-brand">
+                <img src="../logo.jpg" alt="Infinity Bank Logo">
+                <div class="bank-brand-text">
+                    <span class="bank-name">INFINITY BANK</span>
+                    <span class="bank-tagline">Retail & Corporate NetBanking</span>
+                </div>
+            </a>
+
+            <div class="bank-user-pill">
+                <div class="bank-user-avatar" id="navAvatar">U</div>
+                <div class="bank-user-info">
+                    <span class="user-greeting">Ancillary Services</span>
+                    <span class="user-acc" id="navAccNumber">A/C: Loading...</span>
+                </div>
+                <div class="bank-balance-badge">
+                    <span class="lbl">Service Tier</span>
+                    <span class="val" style="color: var(--c-gold);">Platinum</span>
+                </div>
+                <button class="bank-btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="bank-shell">
+        <nav class="bank-breadcrumbs">
+            <a href="../code4.html">Dashboard</a>
+            <span class="sep">/</span>
+            <span class="curr">Ancillary & Value-Added Services</span>
+        </nav>
+
+        <section class="bank-hero-strip">
+            <div class="hero-left">
+                <div class="hero-icon-box">⭐</div>
+                <div>
+                    <h1 class="hero-title">Specialized Banking Services</h1>
+                    <p class="hero-desc">Access premier vault lockers, foreign exchange, doorstep banking, and institutional financial facilities.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="lbl">Dedicated Support</span>
+                <span class="val" style="color: #4ade80; font-size: 1.25rem; font-weight: 800;">24x7 Priority Line</span>
+                <span class="sub">Toll-free concierge access</span>
+            </div>
+        </section>
+
+        <div class="bank-grid-layout">
+            <div class="bank-main-col">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                    <!-- LOCKER FACILITY -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-darkred); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">Vault Protection</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Safe Deposit Lockers</h3>
+                            <div style="font-size: 1.25rem; font-weight: 800; color: var(--c-darkred); margin-bottom: 8px;">From ₹1,200 <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">/ year</span></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Secure storage for precious jewellery, property deeds, and important assets with biometric access and dual-key security vaults.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="requestService('Safe Deposit Locker')">Check Branch Availability</button>
+                    </div>
+
+                    <!-- FOREX & TRAVEL CARD -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: #15803d; text-transform: uppercase; background: #f0fdf4; padding: 3px 8px; border-radius: var(--fillet);">14 Currencies</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Forex & Multi-Currency Cards</h3>
+                            <div style="font-size: 1.25rem; font-weight: 800; color: #15803d; margin-bottom: 8px;">Zero Markup</div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Pre-load USD, EUR, GBP, AED, SGD and 10 other currencies on a single chip-enabled contactless travel card with locked-in exchange rates.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="requestService('Forex Card')">Order Forex Card</button>
+                    </div>
+
+                    <!-- DOORSTEP BANKING -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-coyote); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">Doorstep Convenience</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Doorstep Banking Services</h3>
+                            <div style="font-size: 1.25rem; font-weight: 800; color: var(--c-coyote); margin-bottom: 8px;">Free for Seniors</div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Cash pickup, cash delivery, cheque book collection, life certificate submission, and draft issuance directly at your home.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="requestService('Doorstep Banking')">Book Home Visit</button>
+                    </div>
+
+                    <!-- AUTO-DEBIT & NACH -->
+                    <div class="bank-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--c-darkred); text-transform: uppercase; background: var(--bg-subtle); padding: 3px 8px; border-radius: var(--fillet);">Recurring Mandates</span>
+                            <h3 style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 8px 0 4px;">Standing Instructions & eNACH</h3>
+                            <div style="font-size: 1.25rem; font-weight: 800; color: var(--c-darkred); margin-bottom: 8px;">Automated & Secure</div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                                Set up automated monthly debits for utility bills, SIP investments, school fees, and loan EMIs without manual intervention.
+                            </p>
+                        </div>
+                        <button type="button" class="bank-btn-primary" onclick="requestService('Standing Instructions')">Manage Mandates</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <a href="../code4.html" class="bank-btn-secondary" style="text-decoration: none;">← Return to NetBanking Dashboard</a>
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="bank-sidebar-col">
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Service Request Tracking</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 8px;">
+                        Have an existing request for cheque book or locker allocation? Check status with your service SRN.
+                    </p>
+                    <div class="bank-form-group">
+                        <input type="text" class="bank-input" placeholder="Enter SRN number" id="srnInput">
+                        <button type="button" class="bank-btn-secondary" style="margin-top: 8px; width: 100%;" onclick="trackSRN()">
+                            Track Status
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bank-sidebar-card">
+                    <h3 class="bank-sidebar-title">Priority Concierge Desk</h3>
+                    <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 8px;">
+                        Need custom corporate escrow accounts or institutional banking?
+                    </p>
+                    <div style="font-size: 1.05rem; font-weight: 800; color: var(--c-darkred);">
+                        📞 1800-888-9999
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bank-bottom-footer">
+            <div>&copy; 2025 Infinity Bank Ltd. All Rights Reserved. Regulated by RBI.</div>
+            <div>
+                <a href="../privacy-policy.html">Privacy Policy</a> | 
+                <a href="../terms-conditions.html">Terms & Conditions</a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const accountNumber = localStorage.getItem("accountNumber");
+        if (accountNumber) {
+            const masked = accountNumber.length > 4 ? "•••• " + accountNumber.slice(-4) : accountNumber;
+            document.getElementById("navAccNumber").textContent = `A/C: ${masked}`;
+            const userName = localStorage.getItem("name");
+            if (userName) document.getElementById("navAvatar").textContent = userName.charAt(0).toUpperCase();
+        }
+
+        function requestService(serviceName) {
+            alert(`Service request initiated for ${serviceName}. Your service reference number (SRN) will be sent via SMS.`);
+        }
+
+        function trackSRN() {
+            const val = document.getElementById("srnInput").value.trim();
+            if (!val) {
+                alert("Please enter a valid Service Request Number (SRN).");
+                return;
+            }
+            alert(`SRN ${val}: Request is currently under priority processing at your Home Branch.`);
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = "../login.html";
+        }
+    </script>
+</body>
+</html>

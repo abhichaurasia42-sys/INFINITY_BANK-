@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw Funds - Infinity Bank</title>
+    <link rel="stylesheet" href="styles_bank.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Bank App Header -->
+    <header class="bank-header">
+        <div class="bank-header-inner">
+            <a href="code4.html" class="bank-brand">
+                <img src="logo.jpg" alt="Infinity Bank Logo">
+                <div>
+                    <div class="bank-brand-title">Infinity Bank</div>
+                    <div class="bank-brand-sub">Secure Digital Banking Portal</div>
+                </div>
+            </a>
+            <div class="bank-header-right">
+                <div class="user-badge">
+                    <div class="user-badge-icon"><i class="fa-solid fa-user"></i></div>
+                    <span id="userNameDisplay">Account Holder</span>
+                </div>
+                <a href="code4.html" class="btn-nav-dashboard">
+                    <i class="fa-solid fa-arrow-left"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bank-shell">
+        <!-- Hero Breadcrumbs & Live Balance Strip -->
+        <div class="bank-page-hero">
+            <div class="hero-left">
+                <div class="hero-icon" style="color: var(--c-red);"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                <div>
+                    <div class="hero-breadcrumbs">
+                        <a href="code4.html">Dashboard</a> / Banking Services / Withdraw Funds
+                    </div>
+                    <h1 class="hero-title">Account Fund Withdrawal</h1>
+                    <p class="hero-desc">Securely debit funds from your savings account with instant OTP authorization.</p>
+                </div>
+            </div>
+            <div class="hero-balance-card">
+                <span class="hero-balance-label">Available Balance</span>
+                <span class="hero-balance-val" id="liveBalanceDisplay">₹0.00</span>
+                <span class="hero-balance-status"><i class="fa-solid fa-circle-check"></i> Verified Account</span>
+            </div>
+        </div>
+
+        <!-- 2-Column Filled Real Bank Grid -->
+        <div class="bank-grid-layout">
+            <!-- Left: Transaction Workspace -->
+            <div class="bank-main-card">
+                <h2 class="card-heading">
+                    <i class="fa-solid fa-arrow-down-wide-short" style="color: var(--c-red);"></i>
+                    Withdraw Funds
+                </h2>
+                <p class="card-subheading">Specify the withdrawal amount and authorize with the 6-digit OTP dispatched to your verified email address.</p>
+
+                <!-- Amount Field with Currency Prefix -->
+                <div class="bank-form-group">
+                    <label for="amount">Withdrawal Amount (INR)</label>
+                    <div class="bank-input-wrap">
+                        <span class="currency-affix">₹</span>
+                        <input type="number" id="amount" class="bank-input" placeholder="e.g. 2000" min="1" required>
+                        <button type="button" class="bank-btn-primary" onclick="requestOTP()">
+                            <i class="fa-solid fa-paper-plane"></i> Get OTP
+                        </button>
+                    </div>
+                    <!-- Quick Amount Selector Chips -->
+                    <div class="quick-chips">
+                        <button type="button" class="chip-btn" onclick="setAmount(500)">+ ₹500</button>
+                        <button type="button" class="chip-btn" onclick="setAmount(1000)">+ ₹1,000</button>
+                        <button type="button" class="chip-btn" onclick="setAmount(2000)">+ ₹2,000</button>
+                        <button type="button" class="chip-btn" onclick="setAmount(5000)">+ ₹5,000</button>
+                    </div>
+                </div>
+
+                <!-- OTP Verification Field -->
+                <div class="bank-form-group" style="margin-top: 24px;">
+                    <label for="otp">Security Verification Code (OTP)</label>
+                    <div class="bank-input-wrap">
+                        <input type="text" id="otp" class="bank-input" placeholder="Enter 6-digit OTP from email" maxlength="6" required>
+                        <button type="button" class="bank-btn-primary" onclick="withdrawMoney()">
+                            <i class="fa-solid fa-circle-check"></i> Verify & Withdraw
+                        </button>
+                    </div>
+                    <small style="color: var(--text-muted); display: block; margin-top: 6px;">
+                        <i class="fa-solid fa-lock" style="color: var(--c-gold);"></i> OTP expires in 5 minutes. Never disclose OTP to anyone.
+                    </small>
+                </div>
+
+                <!-- Message Feedback Box -->
+                <div id="message" class="bank-status-box"></div>
+            </div>
+
+            <!-- Right: Real Bank Context Sidebars -->
+            <aside class="bank-sidebar">
+                <!-- Account Snapshot Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-id-card"></i> Account Snapshot</h3>
+                    <ul class="account-kv-list">
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Account Number</span>
+                            <span class="account-kv-val" id="accNumberSnapshot">•••• •••• •••• ----</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Account Type</span>
+                            <span class="account-kv-val">Digital Savings</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">Daily Withdrawal Limit</span>
+                            <span class="account-kv-val">₹50,000.00 / day</span>
+                        </li>
+                        <li class="account-kv-item">
+                            <span class="account-kv-label">ATM / POS Daily Limit</span>
+                            <span class="account-kv-val">₹25,000.00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Security & Protection Badge -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-shield-halved"></i> Security Verification</h3>
+                    <div class="security-features">
+                        <div class="sec-item">
+                            <i class="fa-solid fa-shield-cat"></i>
+                            <div><strong>Two-Factor Protected:</strong> Every debit operation strictly requires OTP authorization.</div>
+                        </div>
+                        <div class="sec-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div><strong>Debit Advice:</strong> An official debit notification is dispatched immediately to your email.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Navigation Shortcuts -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fa-solid fa-compass"></i> Banking Shortcuts</h3>
+                    <div class="quick-nav-grid">
+                        <a href="deposit.html" class="quick-nav-btn"><i class="fa-solid fa-money-bill-wave"></i> Deposit</a>
+                        <a href="send-money.html" class="quick-nav-btn"><i class="fa-solid fa-paper-plane"></i> Send Money</a>
+                        <a href="transactions.html" class="quick-nav-btn"><i class="fa-solid fa-receipt"></i> Statement</a>
+                        <a href="check-balance.html" class="quick-nav-btn"><i class="fa-solid fa-wallet"></i> Balance</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Bank Standard Footer -->
+        <footer class="bank-bottom-footer">
+            <p>&copy; 2025 Infinity Bank. All rights reserved. Registered Digital Banking Institution.</p>
+            <p>24x7 Customer Support Helpline: 1800-200-INF (Toll Free) | <a href="privacy-policy.html">Privacy</a> | <a href="terms-conditions.html">Terms</a></p>
+        </footer>
+    </div>
+
+    <script>
+        const accountNumber = localStorage.getItem("accountNumber");
+        const storedName = localStorage.getItem("name");
+        let storedBalance = localStorage.getItem("balance") || "0";
+
+        if (!accountNumber) {
+            alert("Session expired or user not logged in. Redirecting to login.");
+            window.location.href = "login.html";
+        }
+
+        if (storedName) {
+            document.getElementById("userNameDisplay").textContent = storedName;
+        }
+        if (accountNumber) {
+            document.getElementById("accNumberSnapshot").textContent = 
+                "•••• " + accountNumber.slice(-4);
+        }
+        updateBalanceUI(storedBalance);
+
+        function updateBalanceUI(bal) {
+            document.getElementById("liveBalanceDisplay").textContent = 
+                "₹" + Number(bal).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function setAmount(val) {
+            const current = Number(document.getElementById("amount").value) || 0;
+            document.getElementById("amount").value = current + val;
+        }
+
+        function showStatus(text, type) {
+            const msgBox = document.getElementById("message");
+            msgBox.className = "bank-status-box show " + type;
+            msgBox.innerHTML = (type === 'success' ? '<i class="fa-solid fa-circle-check"></i> ' : '<i class="fa-solid fa-circle-exclamation"></i> ') + text;
+        }
+
+        async function requestOTP() {
+            const amount = document.getElementById("amount").value;
+            if (!amount || amount <= 0) {
+                showStatus("Please enter a valid withdrawal amount before requesting OTP.", "error");
+                return;
+            }
+
+            showStatus("Requesting secure withdrawal OTP...", "info");
+
+            try {
+                const response = await fetch("/request-otp", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ accountNumber })
+                });
+
+                const data = await response.json();
+                showStatus(data.message || "OTP generated and dispatched.", data.success ? "success" : "error");
+            } catch (err) {
+                showStatus("Network error while requesting OTP. Please check server.", "error");
+            }
+        }
+
+        async function withdrawMoney() {
+            const amount = document.getElementById("amount").value;
+            const otp = document.getElementById("otp").value.trim();
+
+            if (!amount || parseFloat(amount) <= 0) {
+                showStatus("Please enter a valid withdrawal amount.", "error");
+                return;
+            }
+            if (!otp) {
+                showStatus("Please enter the verification OTP sent to your email.", "error");
+                return;
+            }
+
+            showStatus("Verifying and processing withdrawal...", "info");
+
+            try {
+                const response = await fetch("/transaction", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ 
+                        accountNumber, 
+                        type: "withdraw", 
+                        amount: parseFloat(amount), 
+                        otp 
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showStatus("Withdrawal successful! ₹" + parseFloat(amount).toLocaleString("en-IN") + " debited from your account.", "success");
+                    if (data.balance !== undefined) {
+                        localStorage.setItem("balance", data.balance);
+                        updateBalanceUI(data.balance);
+                    }
+                    if (data.transactions) {
+                        localStorage.setItem("transactions", JSON.stringify(data.transactions));
+                    }
+                    document.getElementById("otp").value = "";
+                } else {
+                    showStatus(data.message || "Transaction failed. Please check OTP or balance.", "error");
+                }
+            } catch (err) {
+                showStatus("Withdrawal error occurred. Please try again.", "error");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+/* Reset styles */
+body, h1, h3, p, a {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, #f0f9ff, #e0f2fe);
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+    text-align: center;
+    background: linear-gradient(90deg, #1e40af, #2563eb);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    font-size: 2rem;
+}
+
+/* Account Info Section */
+.account-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.account-box {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.account-box:hover {
+    transform: translateY(-5px);
+}
+
+.account-box h3 {
+    color: #1d4ed8;
+    margin-bottom: 10px;
+}
+
+/* Back Dashboard Button */
+.back-dashboard {
+    display: block;
+    width: fit-content;
+    margin: 30px auto 0 auto;
+    padding: 12px 20px;
+    background-color: #22c55e;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.back-dashboard:hover {
+    background-color: #15803d;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #6b7280;
+    font-size: 0.9rem;
+}

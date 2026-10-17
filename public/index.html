@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Bank - Next-Gen Digital Banking</title>
+    <link rel="stylesheet" href="styles_home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ====================================================================
+         TOP NAVIGATION BAR (LOGIN & CREATE ACCOUNT ON TOP RIGHT)
+         ==================================================================== -->
+    <header class="site-header">
+        <div class="home-container">
+            <nav class="nav-wrapper">
+                <a href="index.html" class="brand-group">
+                    <img src="logo.jpg" alt="Infinity Bank Logo" class="brand-logo">
+                    <div class="brand-text">
+                        <h1>Infinity Bank</h1>
+                        <p>For everyone, anytime</p>
+                    </div>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#banking-services">Banking Services</a></li>
+                    <li><a href="#loans">Loans</a></li>
+                    <li><a href="#sip">SIP</a></li>
+                    <li><a href="#investments">Investments</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                </ul>
+
+                <!-- Top Right Actions -->
+                <div class="header-actions">
+                    <button type="button" class="btn-login" id="openLoginBtn">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Login</span>
+                    </button>
+                    <a href="code3.html" class="btn-register">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Create Account</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="home-container">
+
+        <!-- ====================================================================
+             CYCLIC ADVERTISEMENT BANNERS (TOP HERO SECTION)
+             ==================================================================== -->
+        <section class="hero-ad-section" aria-label="Special Offers and Campaigns">
+            <div class="ad-carousel-wrapper" id="homeAdCarousel">
+                <div class="ad-carousel-track" id="adCarouselTrack">
+
+                    <!-- Advertisement Slide 1: Zero-Balance Digital Savings Account -->
+                    <div class="ad-slide" style="--slide-accent: var(--c-navy); --slide-bg: linear-gradient(135deg, rgba(30, 45, 74, 0.08) 0%, rgba(245, 166, 35, 0.12) 100%);">
+                        <div class="ad-badge">
+                            <i class="fa-solid fa-fire"></i> Limited Period Festive Offer
+                        </div>
+                        <h2 class="ad-title">Zero-Balance Digital Savings Account + 7.50% Interest p.a.</h2>
+                        <p class="ad-desc">Open an account 100% online in under 3 minutes with Aadhaar OTP. Get a free Lifetime Platinum RuPay Debit card and enjoy unlimited free instant money transfers across India.</p>
+                        
+                        <div class="ad-perks">
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-navy);"></i> Zero Minimum Balance</span>
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-navy);"></i> Free Virtual Platinum Card</span>
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-navy);"></i> ₹500 Cashback on 1st UPI</span>
+                        </div>
+
+                        <div class="ad-actions">
+                            <a href="code3.html" class="ad-btn primary">Open Account Now &rarr;</a>
+                            <a href="#banking-services" class="ad-btn secondary">View Account Benefits</a>
+                        </div>
+                    </div>
+
+                    <!-- Advertisement Slide 2: Loans Campaign -->
+                    <div class="ad-slide" style="--slide-accent: var(--c-gold); --slide-bg: linear-gradient(135deg, rgba(245, 166, 35, 0.12) 0%, rgba(30, 45, 74, 0.06) 100%);">
+                        <div class="ad-badge">
+                            <i class="fa-solid fa-bolt"></i> Instant Approval Campaign
+                        </div>
+                        <h2 class="ad-title">Instant Home & Personal Loans at 8.45% Fixed Rate</h2>
+                        <p class="ad-desc">Fuel your ambitions with pre-approved loans up to ₹40 Lakhs. 100% digital verification, zero documentation charges, and lightning-fast disbursal directly into your bank account.</p>
+                        
+                        <div class="ad-perks">
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-gold-dark);"></i> Disbursal in 10 Minutes</span>
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-gold-dark);"></i> Zero Foreclosure Penalty</span>
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-gold-dark);"></i> Flexible Tenure up to 84 Mos</span>
+                        </div>
+
+                        <div class="ad-actions">
+                            <a href="#loans" class="ad-btn primary">Check Loan Eligibility &rarr;</a>
+                            <a href="nav/navLoan.html" class="ad-btn secondary">Calculate Monthly EMI</a>
+                        </div>
+                    </div>
+
+                    <!-- Advertisement Slide 3: SIP & Mutual Funds -->
+                    <div class="ad-slide" style="--slide-accent: var(--c-navy-mid); --slide-bg: linear-gradient(135deg, rgba(42, 63, 107, 0.10) 0%, rgba(245, 166, 35, 0.08) 100%);">
+                        <div class="ad-badge">
+                            <i class="fa-solid fa-chart-line"></i> Wealth Creation Program
+                        </div>
+                        <h2 class="ad-title">Start Systematic Investment (SIP) from Just ₹500/Month</h2>
+                        <p class="ad-desc">Grow your wealth with curated 5-star equity mutual funds and save up to ₹46,800 annually in income taxes under Section 80C with ELSS tax-saving funds.</p>
+                        
+                        <div class="ad-perks">
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-navy-mid);"></i> 0% Brokerage & Advisory Fees</span>
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-navy-mid);"></i> Automated Monthly Flexi-SIP</span>
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-navy-mid);"></i> Top 15% Historical Returns</span>
+                        </div>
+
+                        <div class="ad-actions">
+                            <a href="#sip" class="ad-btn primary">Start Your First SIP &rarr;</a>
+                            <a href="nav/navinvestment.html" class="ad-btn secondary">Explore Top Funds</a>
+                        </div>
+                    </div>
+
+                    <!-- Advertisement Slide 4: Platinum Credit Card -->
+                    <div class="ad-slide" style="--slide-accent: var(--c-gold); --slide-bg: linear-gradient(135deg, rgba(245, 166, 35, 0.14) 0%, rgba(30, 45, 74, 0.08) 100%);">
+                        <div class="ad-badge">
+                            <i class="fa-solid fa-credit-card"></i> Exclusive Privilege Launch
+                        </div>
+                        <h2 class="ad-title">Infinity Platinum Metal Card: 5% Unlimited Cashback</h2>
+                        <p class="ad-desc">Get a ₹2,500 Amazon Gift Voucher upon card activation! Enjoy complimentary access to domestic & international airport lounges, zero fuel surcharges, and concierge assistance.</p>
+                        
+                        <div class="ad-perks">
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-gold-dark);"></i> 5% Cashback on Dining & Travel</span>
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-gold-dark);"></i> Zero Annual Fee for Year One</span>
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-gold-dark);"></i> ₹50 Lakh Complimentary Insurance</span>
+                        </div>
+
+                        <div class="ad-actions">
+                            <a href="nav/navoffers.html" class="ad-btn primary">Claim Your Credit Card &rarr;</a>
+                            <a href="code3.html" class="ad-btn secondary">Apply Online</a>
+                        </div>
+                    </div>
+
+                    <!-- Advertisement Slide 5: High-Yield Fixed Deposits -->
+                    <div class="ad-slide" style="--slide-accent: var(--c-navy); --slide-bg: linear-gradient(135deg, rgba(30, 45, 74, 0.10) 0%, rgba(245, 166, 35, 0.10) 100%);">
+                        <div class="ad-badge">
+                            <i class="fa-solid fa-shield-halved"></i> 100% Guaranteed Returns
+                        </div>
+                        <h2 class="ad-title">Lock in High-Yield Fixed Deposits up to 8.25% p.a.</h2>
+                        <p class="ad-desc">Safeguard your future with government-backed DICGC insurance protection up to ₹5 Lakhs. Enjoy additional 0.50% interest bonus for senior citizens and flexible monthly or quarterly payouts.</p>
+                        
+                        <div class="ad-perks">
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-navy);"></i> Premature Liquidity Anytime</span>
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-navy);"></i> Instant Overdraft against FD</span>
+                            <span class="perk-item"><i class="fa-solid fa-check" style="color: var(--c-navy);"></i> Flexible Tenure 7 Days to 10 Yrs</span>
+                        </div>
+
+                        <div class="ad-actions">
+                            <a href="#investments" class="ad-btn primary">Open Fixed Deposit &rarr;</a>
+                            <a href="nav/navinvestment.html" class="ad-btn secondary">Compare FD Rates</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Carousel Arrows -->
+                <button class="ad-arrow prev" id="adPrev" aria-label="Previous Offer">&#10094;</button>
+                <button class="ad-arrow next" id="adNext" aria-label="Next Offer">&#10095;</button>
+
+                <!-- Carousel Indicators -->
+                <div class="ad-indicators" id="adIndicators"></div>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             1. FEATURES WE PROVIDE
+             ==================================================================== -->
+        <section id="features" class="content-section">
+            <div class="section-header">
+                <span class="section-tag">Next-Gen Tech</span>
+                <h3 class="section-title">Features We Provide</h3>
+                <p class="section-subtitle">Engineered with bank-grade security and state-of-the-art fintech infrastructure for seamless daily transactions.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="element-box accent-teal">
+                    <div class="box-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h4 class="box-title">256-Bit Military Encryption</h4>
+                    <p class="box-desc">Every transaction and login is secured by end-to-end TLS 1.3 encryption, two-factor authentication, and instant suspicious login alerts.</p>
+                    <div class="box-meta">
+                        <span>ISO 27001 Certified</span>
+                        <span class="box-link">Learn More &rarr;</span>
+                    </div>
+                </div>
+
+                <div class="element-box accent-sage">
+                    <div class="box-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                    <h4 class="box-title">Zero-Latency Instant Transfers</h4>
+                    <p class="box-desc">Instant fund transfers through UPI 2.0, IMPS, RTGS, and NEFT available 24 hours a day, 365 days a year with zero processing charges.</p>
+                    <div class="box-meta">
+                        <span>99.99% Uptime SLA</span>
+                        <span class="box-link">Explore Transfers &rarr;</span>
+                    </div>
+                </div>
+
+                <div class="element-box accent-peach">
+                    <div class="box-icon"><i class="fa-solid fa-fingerprint"></i></div>
+                    <h4 class="box-title">100% Paperless Digital KYC</h4>
+                    <p class="box-desc">Open an account in under 3 minutes with Aadhaar OTP verification. Zero physical visits, zero paper forms, instant active account number.</p>
+                    <div class="box-meta">
+                        <span>Instant Activation</span>
+                        <span class="box-link">Open Account &rarr;</span>
+                    </div>
+                </div>
+
+                <div class="element-box accent-rose">
+                    <div class="box-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h4 class="box-title">AI Smart Spend Analytics</h4>
+                    <p class="box-desc">Automatic transaction categorization, real-time budget tracking, and personalized savings advice to help you reach your financial milestones.</p>
+                    <div class="box-meta">
+                        <span>Smart Money Insights</span>
+                        <span class="box-link">View Demo &rarr;</span>
+                    </div>
+                </div>
+
+                <div class="element-box accent-cream">
+                    <div class="box-icon"><i class="fa-solid fa-globe"></i></div>
+                    <h4 class="box-title">Worldwide Global Access</h4>
+                    <p class="box-desc">International multi-currency support, zero foreign exchange markup on select cards, and seamless outward educational remittances.</p>
+                    <div class="box-meta">
+                        <span>150+ Currencies</span>
+                        <span class="box-link">Forex Rates &rarr;</span>
+                    </div>
+                </div>
+
+                <div class="element-box accent-teal">
+                    <div class="box-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h4 class="box-title">24/7 Dedicated Support</h4>
+                    <p class="box-desc">Round-the-clock priority customer support via email, phone, and in-app ticketing to resolve queries in minutes, not days.</p>
+                    <div class="box-meta">
+                        <span>Toll-Free & In-App</span>
+                        <span class="box-link">Contact Us &rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             2. BANKING SERVICES
+             ==================================================================== -->
+        <section id="banking-services" class="content-section">
+            <div class="section-header">
+                <span class="section-tag">Everyday Banking</span>
+                <h3 class="section-title">Banking Services</h3>
+                <p class="section-subtitle">Complete personal and business banking solutions tailored to fit your lifestyle and financial aspirations.</p>
+            </div>
+
+            <div class="grid-4">
+                <div class="element-box accent-teal">
+                    <div class="box-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+                    <h4 class="box-title">Savings Accounts</h4>
+                    <p class="box-desc">High interest rates up to 7.25% p.a., free monthly statements, digital passbooks, and zero maintenance fees.</p>
+                    <div class="box-meta">
+                        <a href="code3.html" class="box-link">Apply Online &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-sage">
+                    <div class="box-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <h4 class="box-title">Current Accounts</h4>
+                    <p class="box-desc">Tailored for entrepreneurs and businesses with high transaction limits, free POS machines, and corporate net banking.</p>
+                    <div class="box-meta">
+                        <a href="nav/navaccount.html" class="box-link">Learn More &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-peach">
+                    <div class="box-icon"><i class="fa-solid fa-credit-card"></i></div>
+                    <h4 class="box-title">Debit & Virtual Cards</h4>
+                    <p class="box-desc">Contactless NFC debit cards with dynamic CVV security, instant card lock/unlock, and customizable daily spending limits.</p>
+                    <div class="box-meta">
+                        <a href="nav/navotherservice.html" class="box-link">Card Services &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-rose">
+                    <div class="box-icon"><i class="fa-solid fa-receipt"></i></div>
+                    <h4 class="box-title">Bill Pay & Recharge</h4>
+                    <p class="box-desc">Pay electricity, water, gas, broadband, and mobile recharge instantly with automatic recurring billing reminders.</p>
+                    <div class="box-meta">
+                        <a href="bill-Pay.html" class="box-link">Pay Bills &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             3. LOANS
+             ==================================================================== -->
+        <section id="loans" class="content-section">
+            <div class="section-header">
+                <span class="section-tag">Borrow Confidently</span>
+                <h3 class="section-title">Loans & Credit Facilities</h3>
+                <p class="section-subtitle">Transparent terms, low interest rates, and flexible tenure designed to support your personal and commercial milestones.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="element-box accent-peach">
+                    <div class="box-icon"><i class="fa-solid fa-house-chimney"></i></div>
+                    <h4 class="box-title">Home Loans</h4>
+                    <p class="box-desc">Finance up to 90% of your property value with interest rates starting at 8.45% p.a. and flexible repayment tenures up to 30 years.</p>
+                    <div class="box-meta">
+                        <span>From 8.45% p.a.</span>
+                        <a href="nav/navLoan.html" class="box-link">Apply Now &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-teal">
+                    <div class="box-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    <h4 class="box-title">Personal Loans</h4>
+                    <p class="box-desc">Collateral-free loans up to ₹25 Lakhs for weddings, travel, medical emergencies, or debt consolidation with instant approval.</p>
+                    <div class="box-meta">
+                        <span>Instant Disbursal</span>
+                        <a href="nav/navLoan.html" class="box-link">Apply Now &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-sage">
+                    <div class="box-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h4 class="box-title">Education Loans</h4>
+                    <p class="box-desc">Cover 100% tuition, travel, and accommodation expenses for top universities in India and overseas with flexible moratoriums.</p>
+                    <div class="box-meta">
+                        <span>Tax Benefits (Sec 80E)</span>
+                        <a href="nav/navLoan.html" class="box-link">Apply Now &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-rose">
+                    <div class="box-icon"><i class="fa-solid fa-car"></i></div>
+                    <h4 class="box-title">Vehicle & Auto Loans</h4>
+                    <p class="box-desc">Up to 100% on-road financing for new cars and two-wheelers with lowest EMI options and zero foreclosure fees after 12 months.</p>
+                    <div class="box-meta">
+                        <span>100% Financing</span>
+                        <a href="nav/navLoan.html" class="box-link">Apply Now &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-cream">
+                    <div class="box-icon"><i class="fa-solid fa-coins"></i></div>
+                    <h4 class="box-title">Gold Loans</h4>
+                    <p class="box-desc">Unlock instant cash against gold jewellery at nominal interest rates with doorstep evaluation and secure insured vault storage.</p>
+                    <div class="box-meta">
+                        <span>Instant Disbursal</span>
+                        <a href="nav/navLoan.html" class="box-link">Apply Now &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-teal">
+                    <div class="box-icon"><i class="fa-solid fa-briefcase"></i></div>
+                    <h4 class="box-title">Business & MSME Loans</h4>
+                    <p class="box-desc">Customized working capital loans, machinery financing, and business lines of credit to scale your company operations efficiently.</p>
+                    <div class="box-meta">
+                        <span>Up to ₹1 Crore</span>
+                        <a href="nav/navLoan.html" class="box-link">Apply Now &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             4. SIP (SYSTEMATIC INVESTMENT PLANS)
+             ==================================================================== -->
+        <section id="sip" class="content-section">
+            <div class="section-header">
+                <span class="section-tag">Disciplined Compounding</span>
+                <h3 class="section-title">Systematic Investment Plans (SIP)</h3>
+                <p class="section-subtitle">Automate your wealth creation with consistent monthly investing in India's top performing equity and hybrid funds.</p>
+            </div>
+
+            <div class="grid-4">
+                <div class="element-box accent-sage">
+                    <div class="box-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <h4 class="box-title">Micro SIP (₹500/mo)</h4>
+                    <p class="box-desc">Start small and build big. Automate ₹500 every month into balanced advantage funds without feeling any financial pinch.</p>
+                    <div class="box-meta">
+                        <span>Low Risk Entry</span>
+                        <a href="nav/navinvestment.html" class="box-link">Start SIP &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-teal">
+                    <div class="box-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h4 class="box-title">Tax Saver ELSS (80C)</h4>
+                    <p class="box-desc">Save up to ₹46,800 annually in taxes with the shortest 3-year lock-in period compared to PPF and traditional tax instruments.</p>
+                    <div class="box-meta">
+                        <span>Save Tax & Grow</span>
+                        <a href="nav/navinvestment.html" class="box-link">Explore ELSS &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-peach">
+                    <div class="box-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h4 class="box-title">Goal-Based SIP</h4>
+                    <p class="box-desc">Pre-built diversified portfolios tailored specifically for buying your dream home, higher education, or early retirement.</p>
+                    <div class="box-meta">
+                        <span>Customized Targets</span>
+                        <a href="nav/navinvestment.html" class="box-link">Plan Goals &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-rose">
+                    <div class="box-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                    <h4 class="box-title">Step-Up SIP Booster</h4>
+                    <p class="box-desc">Automatically increase your monthly investment by 10% each year as your income grows to double your final retirement corpus.</p>
+                    <div class="box-meta">
+                        <span>Automated Booster</span>
+                        <a href="nav/navinvestment.html" class="box-link">Calculate Growth &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             5. INVESTMENTS
+             ==================================================================== -->
+        <section id="investments" class="content-section">
+            <div class="section-header">
+                <span class="section-tag">Grow Your Wealth</span>
+                <h3 class="section-title">Investments & Wealth Management</h3>
+                <p class="section-subtitle">Diversify your portfolio with fixed income, government sovereign bonds, and high-yield guaranteed instruments.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="element-box accent-cream">
+                    <div class="box-icon"><i class="fa-solid fa-vault"></i></div>
+                    <h4 class="box-title">Fixed Deposits (FD)</h4>
+                    <p class="box-desc">Earn guaranteed interest up to 8.25% p.a. Flexible tenures from 7 days to 10 years with senior citizen bonus and premature liquidity.</p>
+                    <div class="box-meta">
+                        <span>Up to 8.25% p.a.</span>
+                        <a href="nav/navinvestment.html" class="box-link">Book FD &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-sage">
+                    <div class="box-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <h4 class="box-title">Recurring Deposits (RD)</h4>
+                    <p class="box-desc">Set aside a fixed amount every month with compounding quarterly interest to achieve your short-term vacation or gadget goals.</p>
+                    <div class="box-meta">
+                        <span>From ₹1,000/mo</span>
+                        <a href="nav/navinvestment.html" class="box-link">Start RD &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-peach">
+                    <div class="box-icon"><i class="fa-solid fa-gem"></i></div>
+                    <h4 class="box-title">Sovereign Gold Bonds</h4>
+                    <p class="box-desc">Invest in digital gold with sovereign safety. Earn 2.50% annual coupon interest plus 100% tax-free capital appreciation at maturity.</p>
+                    <div class="box-meta">
+                        <span>Zero Storage Costs</span>
+                        <a href="nav/navinvestment.html" class="box-link">Buy SGB &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-teal">
+                    <div class="box-icon"><i class="fa-solid fa-umbrella"></i></div>
+                    <h4 class="box-title">National Pension System</h4>
+                    <p class="box-desc">Government-backed voluntary retirement plan with additional ₹50,000 tax deduction under Section 80CCD(1B) beyond the 80C limit.</p>
+                    <div class="box-meta">
+                        <span>Retirement Security</span>
+                        <a href="nav/navinvestment.html" class="box-link">Enroll NPS &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-rose">
+                    <div class="box-icon"><i class="fa-solid fa-file-shield"></i></div>
+                    <h4 class="box-title">Corporate Bonds & NCDs</h4>
+                    <p class="box-desc">Invest in CRISIL AAA/AA+ rated corporate debt instruments for steady, predictable monthly or semi-annual cash flow payouts.</p>
+                    <div class="box-meta">
+                        <span>High Fixed Yield</span>
+                        <a href="nav/navinvestment.html" class="box-link">View Bonds &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="element-box accent-cream">
+                    <div class="box-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                    <h4 class="box-title">Insurance Advisory</h4>
+                    <p class="box-desc">Comprehensive term life cover, family health insurance, and accident protection policies with seamless digital claim settlement.</p>
+                    <div class="box-meta">
+                        <span>Affordable Premiums</span>
+                        <a href="nav/navinsurance.html" class="box-link">View Plans &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             6. FAQS (FREQUENTLY ASKED QUESTIONS)
+             ==================================================================== -->
+        <section id="faqs" class="content-section">
+            <div class="section-header">
+                <span class="section-tag">Help & Clarity</span>
+                <h3 class="section-title">Frequently Asked Questions</h3>
+                <p class="section-subtitle">Find fast answers to common questions about accounts, online banking, loans, investments, and account security.</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <button class="faq-question">
+                        <span>How do I open an Infinity Bank account online?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Opening an account takes less than 3 minutes. Simply click <strong>"Create Account"</strong> on the top right, enter your personal details, verify your email with a one-time password (OTP), and your account number and card details will be generated instantly.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What documents are required to apply for a personal or home loan?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You need your government-issued ID (Aadhaar Card or PAN Card), recent address proof, and 3 months of bank statements or salary slips. With our 100% digital verification system, approvals are processed in under 10 minutes without physical paper submission.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How does the SIP auto-invest plan work, and can I pause or stop anytime?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely! Once you configure your chosen monthly amount and investment date, funds are automatically debited. You have complete flexibility to pause, modify the investment amount, or terminate the SIP anytime with zero penalty fees.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Are my money and transactions secure with Infinity Bank?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Security is our utmost priority. All sessions and transfers are safeguarded with bank-grade 256-bit encryption. Additionally, deposits are backed and insured under DICGC guidelines up to ₹5,00,000 per depositor.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Are there any charges for fund transfers (NEFT / RTGS / IMPS / UPI)?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. All electronic domestic fund transfers carried out via our internet banking portal—including UPI, IMPS, RTGS, and NEFT—are 100% free of charge with zero hidden convenience fees.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I access my dashboard after creating an account?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Click the <strong>"Login"</strong> button on the top right of this page, enter your 15-digit Account Number and Password, and you will be immediately redirected to your personal dashboard where you can check balance, transfer money, view card details, and pay bills.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====================================================================
+         FOOTER
+         ==================================================================== -->
+    <footer class="site-footer">
+        <div class="home-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="brand-group" style="margin-bottom: 12px;">
+                        <img src="logo.jpg" alt="Infinity Bank Logo" class="brand-logo" style="width: 38px; height: 38px;">
+                        <div class="brand-text">
+                            <h2 style="font-size: 1.2rem; font-weight: 700;">Infinity Bank</h2>
+                            <p>For everyone, anytime</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.88rem; line-height: 1.6; max-width: 320px; color: var(--text-secondary);">
+                        Infinity Bank is a technology-first digital banking ecosystem delivering next-generation financial services, zero-balance savings, competitive credit, and wealth creation tools.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Banking & Cards</h4>
+                    <ul>
+                        <li><a href="#banking-services">Digital Savings</a></li>
+                        <li><a href="#banking-services">Current Accounts</a></li>
+                        <li><a href="nav/navoffers.html">Platinum Cards</a></li>
+                        <li><a href="bill-Pay.html">Bill Payments</a></li>
+                        <li><a href="recharge.html">Recharges</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Loans & Wealth</h4>
+                    <ul>
+                        <li><a href="#loans">Personal Loans</a></li>
+                        <li><a href="#loans">Home Loans</a></li>
+                        <li><a href="#sip">Systematic SIP</a></li>
+                        <li><a href="#investments">Fixed Deposits</a></li>
+                        <li><a href="nav/navinvestment.html">Mutual Funds</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support & Legal</h4>
+                    <ul>
+                        <li><a href="#faqs">Help Center (FAQs)</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="login.html">Member Portal</a></li>
+                        <li><a href="code3.html">Open Account</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Infinity Bank. All rights reserved. Registered Digital Banking Institution.</p>
+                <p>Designed with security, speed, and simplicity in mind.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====================================================================
+         LOGIN MODAL (ACCESSIBLE FROM TOP RIGHT "LOGIN" BUTTON)
+         ==================================================================== -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeLoginModal" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Login to access your Infinity Bank account</p>
+            </div>
+
+            <form class="modal-form" id="homeLoginForm">
+                <div class="input-group">
+                    <label for="modalAccountNumber">Account Number</label>
+                    <input type="text" id="modalAccountNumber" placeholder="Enter your 15-digit account number" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="modalPassword">Password</label>
+                    <input type="password" id="modalPassword" placeholder="Enter your account password" required>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; font-size: 0.85rem;">
+                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; margin: 0;">
+                        <input type="checkbox" id="modalRememberMe" style="accent-color: var(--c-teal);"> Remember Me
+                    </label>
+                    <a href="forgot-password.html" style="color: var(--c-teal); text-decoration: none; font-weight: 600;">Forgot Password?</a>
+                </div>
+
+                <button type="submit" id="modalLoginSubmit">Login to Dashboard</button>
+                <p id="modalMessage"></p>
+            </form>
+
+            <div class="modal-footer">
+                Don't have an account? <a href="code3.html">Create Account</a>
+                <br>
+                <a href="login.html" style="font-size: 0.8rem; color: var(--text-muted); display: inline-block; margin-top: 8px;">Open dedicated login page &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         INTERACTIVE JAVASCRIPT
+         ==================================================================== -->
+    <script>
+        // ==========================================================
+        // 1. CYCLIC ADVERTISEMENT CAROUSEL (TOP OF HOMEPAGE)
+        // ==========================================================
+        (function initHomeAdCarousel() {
+            const track = document.getElementById("adCarouselTrack");
+            const slides = document.querySelectorAll(".ad-slide");
+            const prevBtn = document.getElementById("adPrev");
+            const nextBtn = document.getElementById("adNext");
+            const indicatorsContainer = document.getElementById("adIndicators");
+            const carouselWrapper = document.getElementById("homeAdCarousel");
+
+            if (!track || slides.length === 0) return;
+
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+            const cycleDuration = 4500; // 4.5 seconds per cyclic ad
+            let timer = null;
+
+            // Generate indicator bars
+            indicatorsContainer.innerHTML = "";
+            slides.forEach((_, idx) => {
+                const dot = document.createElement("button");
+                dot.classList.add("ad-dot");
+                dot.setAttribute("aria-label", `Advertisement Slide ${idx + 1}`);
+                if (idx === 0) dot.classList.add("active");
+                dot.addEventListener("click", () => {
+                    goToSlide(idx);
+                    restartTimer();
+                });
+                indicatorsContainer.appendChild(dot);
+            });
+
+            const dots = indicatorsContainer.querySelectorAll(".ad-dot");
+
+            function updateTrack() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle("active", idx === currentIndex);
+                });
+            }
+
+            function goToSlide(index) {
+                currentIndex = (index + totalSlides) % totalSlides;
+                updateTrack();
+            }
+
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+
+            function startTimer() {
+                if (timer) clearInterval(timer);
+                timer = setInterval(nextSlide, cycleDuration);
+            }
+
+            function stopTimer() {
+                if (timer) {
+                    clearInterval(timer);
+                    timer = null;
+                }
+            }
+
+            function restartTimer() {
+                stopTimer();
+                startTimer();
+            }
+
+            nextBtn.addEventListener("click", () => {
+                nextSlide();
+                restartTimer();
+            });
+
+            prevBtn.addEventListener("click", () => {
+                prevSlide();
+                restartTimer();
+            });
+
+            carouselWrapper.addEventListener("mouseenter", stopTimer);
+            carouselWrapper.addEventListener("mouseleave", startTimer);
+
+            // Touch swipe gesture for mobile
+            let startX = 0;
+            carouselWrapper.addEventListener("touchstart", (e) => {
+                startX = e.changedTouches[0].screenX;
+                stopTimer();
+            }, { passive: true });
+
+            carouselWrapper.addEventListener("touchend", (e) => {
+                const endX = e.changedTouches[0].screenX;
+                const diff = startX - endX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0) nextSlide();
+                    else prevSlide();
+                }
+                startTimer();
+            }, { passive: true });
+
+            startTimer();
+        })();
+
+        // ==========================================================
+        // 2. FAQS INTERACTIVE ACCORDION
+        // ==========================================================
+        (function initFaqAccordion() {
+            const faqItems = document.querySelectorAll(".faq-item");
+            faqItems.forEach(item => {
+                const btn = item.querySelector(".faq-question");
+                btn.addEventListener("click", () => {
+                    const isActive = item.classList.contains("active");
+                    // Close others
+                    faqItems.forEach(other => other.classList.remove("active"));
+                    if (!isActive) {
+                        item.classList.add("active");
+                    }
+                });
+            });
+        })();
+
+        // ==========================================================
+        // 3. TOP RIGHT LOGIN MODAL CONTROLLER
+        // ==========================================================
+        (function initLoginModal() {
+            const openBtn = document.getElementById("openLoginBtn");
+            const closeBtn = document.getElementById("closeLoginModal");
+            const modal = document.getElementById("loginModal");
+            const form = document.getElementById("homeLoginForm");
+            const messageEl = document.getElementById("modalMessage");
+
+            if (!openBtn || !modal) return;
+
+            openBtn.addEventListener("click", () => {
+                modal.classList.add("active");
+                document.getElementById("modalAccountNumber").focus();
+            });
+
+            closeBtn.addEventListener("click", () => {
+                modal.classList.remove("active");
+                messageEl.textContent = "";
+            });
+
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove("active");
+                    messageEl.textContent = "";
+                }
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && modal.classList.contains("active")) {
+                    modal.classList.remove("active");
+                    messageEl.textContent = "";
+                }
+            });
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const accountNumber = document.getElementById("modalAccountNumber").value.trim();
+                const password = document.getElementById("modalPassword").value.trim();
+
+                if (!accountNumber || !password) {
+                    messageEl.textContent = "Please enter both Account Number and Password.";
+                    messageEl.style.color = "red";
+                    return;
+                }
+
+                messageEl.textContent = "Verifying credentials...";
+                messageEl.style.color = "var(--c-gold)";
+
+                try {
+                    const { default: supabase } = await import('./js/supabaseClient.js');
+                    const { data, error } = await supabase
+                        .from('users')
+                        .select('password, name, balance, transactions, card_number')
+                        .eq('account_number', accountNumber)
+                        .single();
+
+                    if (error || !data) {
+                        messageEl.textContent = "Account not found. Please check your account number.";
+                        messageEl.style.color = "#E74C3C";
+                        return;
+                    }
+
+                    if (data.password !== password) {
+                        messageEl.textContent = "Incorrect password. Please try again.";
+                        messageEl.style.color = "#E74C3C";
+                        return;
+                    }
+
+                    messageEl.textContent = "✓ Login successful! Redirecting...";
+                    messageEl.style.color = "#27AE60";
+
+                    localStorage.setItem("accountNumber", accountNumber);
+                    localStorage.setItem("name", data.name);
+                    localStorage.setItem("balance", data.balance);
+                    localStorage.setItem("transactions", JSON.stringify(data.transactions || []));
+                    if (data.card_number) localStorage.setItem("cardNumber", data.card_number);
+
+                    setTimeout(() => {
+                        window.location.href = "code4.html";
+                    }, 700);
+                } catch (error) {
+                    console.error("Supabase modal login error:", error);
+                    messageEl.textContent = "Connection error. Please try again.";
+                    messageEl.style.color = "#E74C3C";
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
