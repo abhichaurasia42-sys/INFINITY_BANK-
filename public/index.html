@@ -658,8 +658,6 @@
 
             <div class="modal-footer">
                 Don't have an account? <a href="code3.html">Create Account</a>
-                <br>
-                <a href="login.html" style="font-size: 0.8rem; color: var(--text-muted); display: inline-block; margin-top: 8px;">Open dedicated login page &rarr;</a>
             </div>
         </div>
     </div>
@@ -800,12 +798,21 @@
             const form = document.getElementById("homeLoginForm");
             const messageEl = document.getElementById("modalMessage");
 
-            if (!openBtn || !modal) return;
-
-            openBtn.addEventListener("click", () => {
+            const openModal = () => {
                 modal.classList.add("active");
-                document.getElementById("modalAccountNumber").focus();
-            });
+                setTimeout(() => {
+                    const accInput = document.getElementById("modalAccountNumber");
+                    if (accInput) accInput.focus();
+                }, 50);
+            };
+
+            openBtn.addEventListener("click", openModal);
+
+            // Check if page was loaded with ?login=true or #login (e.g. from Create Account page)
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get("login") === "true" || window.location.hash === "#login") {
+                openModal();
+            }
 
             closeBtn.addEventListener("click", () => {
                 modal.classList.remove("active");

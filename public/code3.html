@@ -23,7 +23,7 @@
         <span>🛡️</span>
         <span>RBI Regulated • 256-Bit SSL</span>
       </div>
-      <a href="login.html" class="reg-login-link">Existing Customer? Log In</a>
+      <a href="index.html?login=true" class="reg-login-link">Existing Customer? Log In</a>
     </div>
   </header>
 
@@ -109,6 +109,10 @@
         <button type="button" class="btn" onclick="register()">
           Submit & Generate Bank Account
         </button>
+
+        <div style="text-align: center; margin-top: 14px; font-size: 0.9rem; color: var(--text-secondary);">
+          Already have an account? <a href="index.html?login=true" style="color: var(--c-gold-dark, #D4891A); font-weight: 700; text-decoration: none;">Log In here &rarr;</a>
+        </div>
       </form>
     </div>
 
@@ -169,7 +173,7 @@
     <p style="margin-top: 6px;">
       <a href="privacy-policy.html">Privacy Policy</a> | 
       <a href="terms-conditions.html">Terms & Conditions</a> | 
-      <a href="login.html">NetBanking Portal</a>
+      <a href="index.html?login=true">NetBanking Portal</a>
     </p>
   </footer>
 
@@ -187,7 +191,7 @@
         return;
       }
 
-      emailStatus.textContent = "Dispatching OTP via secure SMTP...";
+      emailStatus.textContent = "Dispatching OTP via Brevo...";
       emailStatus.style.color = "var(--c-coyote)";
 
       try {
@@ -306,6 +310,7 @@
         const { data, error } = await supabase
           .from('users')
           .insert([{
+            id: String(accountNumber),
             account_number: accountNumber,
             name,
             dob,

@@ -72,6 +72,8 @@
     --shadow-gold:   0 4px 16px rgba(245, 166, 35, 0.30);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 /* ==========================================================================
    RESET & BASE
    ========================================================================== */
@@ -84,13 +86,21 @@
 html { scroll-behavior: smooth; }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: var(--bg-page);
     color: var(--text-primary);
     line-height: 1.6;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.011em;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-text h1, .page-header h1, .portal-header-text h1 {
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: -0.025em;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
 /* ==========================================================================
@@ -832,7 +842,7 @@ body {
 .vc-contactless { font-size: 1.3rem; opacity: 0.8; }
 
 .vc-number {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
     font-size: 1.45rem;
     font-weight: 700;
     letter-spacing: 3px;
@@ -841,6 +851,7 @@ body {
     position: relative;
     z-index: 2;
     margin: 8px 0;
+    font-variant-numeric: tabular-nums;
 }
 
 .vc-bottom-row {
@@ -1043,7 +1054,8 @@ input:checked + .bank-slider:before { transform: translateX(22px); }
     font-size: 0.85rem;
     font-weight: 700;
     color: #FFFFFF !important;
-    font-family: 'Courier New', monospace;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-variant-numeric: tabular-nums;
 }
 
 .bank-balance-badge {

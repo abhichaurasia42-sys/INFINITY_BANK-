@@ -187,6 +187,18 @@
         }
         updateBalanceUI(storedBalance);
 
+        // Fetch latest live balance from server immediately on page load
+        (async function fetchLiveBalance() {
+            try {
+                const res = await fetch(`/getUserDetails?accountNumber=${encodeURIComponent(accountNumber)}`);
+                const data = await res.json();
+                if (data && data.success && data.balance !== undefined) {
+                    localStorage.setItem("balance", data.balance);
+                    updateBalanceUI(data.balance);
+                }
+            } catch (e) {}
+        })();
+
         function updateBalanceUI(bal) {
             document.getElementById("liveBalanceDisplay").textContent = 
                 "₹" + Number(bal).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -221,6 +233,12 @@
 
                 const data = await response.json();
                 showStatus(data.message || "OTP generated and dispatched.", data.success ? "success" : "error");
+                if (data.success) {
+                    const otpMatch = data.message && data.message.match(/\b\d{6}\b/);
+                    if (otpMatch) {
+                        document.getElementById("otp").value = otpMatch[0];
+                    }
+                }
             } catch (err) {
                 showStatus("Network error while requesting OTP. Please check server.", "error");
             }

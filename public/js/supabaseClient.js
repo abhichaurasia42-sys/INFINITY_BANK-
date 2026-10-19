@@ -1,9 +1,13 @@
 // Supabase client initialization
+// Credentials are fetched from the server (/config) so they stay out of source code.
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-const supabaseUrl = "https://cmihcvzwachfhrylogpy.supabase.co";
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtaWhjdnp3YWNoZmhyeWxvZ3B5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIyMjEwMjIsImV4cCI6MjEwNzc5NzAyMn0.kr7VwqXTAuptUngWrrEOZQ98QIVJJ-ZofoOpN39ttZg";
+async function initSupabase() {
+    const res = await fetch("/config");
+    const { supabaseUrl, supabaseAnonKey } = await res.json();
+    return createClient(supabaseUrl, supabaseAnonKey);
+}
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = await initSupabase();
 
 export default supabase;
